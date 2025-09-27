@@ -67,13 +67,13 @@ func on_choice_selected(choice_index: int):
 		if story_manager:
 			story_manager.process_effects(choice.effects)
 	
-	# Load next scene with blur transition
+	# Load next scene with fade transition
 	if choice.has("next_scene"):
-		blur_out_and_load_scene(choice.next_scene)
+		fade_out_and_load_scene(choice.next_scene)
 
 func on_encounter_start():
-	# Blur in when encounter starts
-	blur_in()
+	# Fade in when encounter starts
+	fade_in()
 	
 	# Play custom entrance animation for pub exit
 	play_custom_animation("stumble_out")

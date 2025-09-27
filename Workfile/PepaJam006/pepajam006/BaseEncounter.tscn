@@ -1,12 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dux0w3mcjeo0l"]
+[gd_scene load_steps=3 format=3 uid="uid://dux0w3mcjeo0l"]
 
 [ext_resource type="Script" uid="uid://4imnmyto8cd" path="res://BaseEncounter.gd" id="1_0k8vj"]
 [ext_resource type="VideoStream" uid="uid://ilbc7gsj4th2" path="res://Assets/Visuals/Homeless/homeless_cigo_v001.ogv" id="2_yu5jg"]
-[ext_resource type="Shader" uid="uid://d1c0s1uwechvv" path="res://shaders/blur.gdshader" id="3_kiq5q"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_dofqd"]
-shader = ExtResource("3_kiq5q")
-shader_parameter/blur_amount = 0.0
 
 [node name="BaseEncounter" type="Control"]
 layout_mode = 3
@@ -129,10 +124,9 @@ volume_db = -10.0
 [node name="ChoiceAudioPlayer" type="AudioStreamPlayer" parent="."]
 volume_db = -5.0
 
-[node name="BlurOverlay" type="ColorRect" parent="."]
+[node name="FadeOverlay" type="ColorRect" parent="."]
 visible = false
 z_index = 100
-material = SubResource("ShaderMaterial_dofqd")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -140,5 +134,4 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-
-[node name="BackBufferCopy" type="BackBufferCopy" parent="BlurOverlay"]
+color = Color(0, 0, 0, 1)

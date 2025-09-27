@@ -22,9 +22,9 @@ func _ready():
 	set_typewriter_mode("word")
 	set_typewriter_speed(0.1)  # Slower for dramatic effect
 	
-	# Customize blur settings for end screen
-	set_blur_transitions(true)  # Enable blur transitions
-	set_blur_duration(2.0)  # Longer blur for dramatic effect
+	# Customize fade settings for end screen
+	set_fade_transitions(true)  # Enable fade transitions
+	set_fade_duration(2.0)  # Longer fade for dramatic effect
 	
 	# Set the story content
 	setup_encounter_content()
