@@ -6,7 +6,7 @@
 [node name="HomelessEncounter" instance=ExtResource("1_en15s")]
 script = ExtResource("2_l3lic")
 
-[node name="FadeOverlay" type="ColorRect" parent="." index="7"]
+[node name="FadeOverlay2" type="ColorRect" parent="." index="7"]
 visible = false
 z_index = 100
 layout_mode = 1

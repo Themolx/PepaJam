@@ -2,12 +2,14 @@ extends BaseEncounter
 
 # Story data for this encounter
 var encounter_title = "The Pub Exit"
-var encounter_text = "Zavřeli, tyvole co já teď?"
+var dialogue = [
+		"Zavřeli něak brzo"
+	]
 
 var encounter_choices = [
 	{
 		"text": "Večerka",
-		"next_scene": "res://encounters/BushInvestigationEncounter.tscn",
+		"next_scene": "res://encounters/Akt2/Skin/skin_encounter_01.tscn",
 		"effects": {
 			"unlock_paths": ["brave_path"],
 			"set_flags": {"investigated_bush": true}
@@ -42,16 +44,14 @@ func _ready():
 func setup_encounter_content():
 	"""Setup the story content for this encounter"""
 	scene_title.text = encounter_title
-	scene_text.text = encounter_text
 	left_button.text = encounter_choices[0].text
 	right_button.text = encounter_choices[1].text
 	
-	# Hide buttons initially - they'll show after typewriter effect
-	left_button.visible = false
-	right_button.visible = false
+	# Use multi-line dialogue instead of single text
 	
-	# Start typewriter effect
-	start_typewriter_effect(encounter_text)
+	
+	# Call after a brief delay to ensure parent is ready
+	call_deferred("set_encounter_text", dialogue)
 
 func on_choice_selected(choice_index: int):
 	"""Handle choice selection with effects and next scene loading"""

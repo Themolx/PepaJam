@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://d336wacxo33da"]
+
+[ext_resource type="PackedScene" uid="uid://dux0w3mcjeo0l" path="res://BaseEncounter.tscn" id="1_fxcd2"]
+[ext_resource type="Script" uid="uid://cjqmlpkvcdkdg" path="res://encounters/Finnish/trashcan_ending.gd" id="2_q0mea"]
+[ext_resource type="VideoStream" uid="uid://d1t2ywfbkl0y7" path="res://Assets/Visuals/Skin/skinhead_end.ogv" id="3_fv8sd"]
+
+[node name="TrashcanEnding" instance=ExtResource("1_fxcd2")]
+script = ExtResource("2_q0mea")
+
+[node name="VideoStreamPlayer" parent="." index="1"]
+stream = ExtResource("3_fv8sd")

@@ -1,8 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://cm86ti318ijyk"]
-
-[ext_resource type="PackedScene" uid="uid://dux0w3mcjeo0l" path="res://BaseEncounter.tscn" id="1_0k8vj"]
-[ext_resource type="Script" uid="uid://bo2fd4x0br6yn" path="res://encounters/HedgehogAdventureEncounter.gd" id="2_3h4mk"]
-
-[node name="HedgehogAdventureEncounter" instance=ExtResource("1_0k8vj")]
-script = ExtResource("2_3h4mk")
-encounter_id = "hedgehog_adventure"

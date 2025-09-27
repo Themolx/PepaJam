@@ -34,9 +34,11 @@ func _ready():
 func setup_encounter_content():
 	"""Setup the story content for this encounter"""
 	scene_title.text = encounter_title
-	scene_text.text = encounter_text
 	left_button.text = encounter_choices[0].text
 	right_button.text = encounter_choices[1].text
+	
+	# Use the new dialogue system for better text handling
+	set_encounter_text(encounter_text)
 
 func on_choice_selected(choice_index: int):
 	"""Handle choice selection with effects and next scene loading"""

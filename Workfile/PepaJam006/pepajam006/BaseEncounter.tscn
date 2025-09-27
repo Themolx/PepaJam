@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dux0w3mcjeo0l"]
 
 [ext_resource type="Script" uid="uid://4imnmyto8cd" path="res://BaseEncounter.gd" id="1_0k8vj"]
-[ext_resource type="VideoStream" uid="uid://ilbc7gsj4th2" path="res://Assets/Visuals/Homeless/homeless_cigo_v001.ogv" id="2_yu5jg"]
+[ext_resource type="FontFile" uid="uid://bv68l8kuuqary" path="res://Assets/Fonts/gunplay.ttf" id="2_kiq5q"]
 
 [node name="BaseEncounter" type="Control"]
 layout_mode = 3
@@ -31,7 +31,6 @@ offset_top = 26.0
 offset_right = 1008.0
 offset_bottom = 1026.0
 scale = Vector2(0.345, 0.345)
-stream = ExtResource("2_yu5jg")
 autoplay = true
 loop = true
 
@@ -60,7 +59,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-metadata/_edit_lock_ = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI"]
 layout_mode = 1
@@ -68,13 +66,11 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 20.0
-offset_top = 50.0
+offset_top = 410.0
 offset_right = -20.0
 offset_bottom = -50.0
 grow_horizontal = 2
 grow_vertical = 2
-alignment = 2
-metadata/_edit_lock_ = true
 
 [node name="SceneTitle" type="Label" parent="UI/VBoxContainer"]
 visible = false
@@ -89,29 +85,37 @@ layout_mode = 2
 
 [node name="SceneText" type="RichTextLabel" parent="UI/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/normal_font_size = 16
+theme_override_fonts/normal_font = ExtResource("2_kiq5q")
+theme_override_font_sizes/normal_font_size = 24
 bbcode_enabled = true
 text = "Scene description will appear here..."
 fit_content = true
 
+[node name="Control" type="Control" parent="UI/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
 [node name="ChoiceContainer" type="HBoxContainer" parent="UI/VBoxContainer"]
+custom_minimum_size = Vector2(0, 51.665)
 layout_mode = 2
 size_flags_vertical = 0
 alignment = 1
 
 [node name="LeftChoice" type="Button" parent="UI/VBoxContainer/ChoiceContainer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("2_kiq5q")
 theme_override_font_sizes/font_size = 14
 text = "Left Choice"
 autowrap_mode = 1
 clip_text = true
 
 [node name="RightChoice" type="Button" parent="UI/VBoxContainer/ChoiceContainer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("2_kiq5q")
 theme_override_font_sizes/font_size = 14
 text = "Right Choice"
 autowrap_mode = 1

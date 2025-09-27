@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://1h4i4t8r0hmg"]
+
+[ext_resource type="PackedScene" uid="uid://dux0w3mcjeo0l" path="res://BaseEncounter.tscn" id="1_t4y2k"]
+[ext_resource type="Script" uid="uid://gqw3jl6a76sc" path="res://encounters/Akt2/Skin/skin_encounter_03.gd" id="2_qdba4"]
+[ext_resource type="VideoStream" uid="uid://cvx0vhhdn65wq" path="res://Assets/Visuals/Skin/skinhead_give.ogv" id="3_1bll1"]
+[ext_resource type="VideoStream" uid="uid://gkwi264jykaf" path="res://Assets/Visuals/Skin/skinhead_idle.ogv" id="5_40tdw"]
+
+[node name="SkinEncounter03" instance=ExtResource("1_t4y2k")]
+script = ExtResource("2_qdba4")
+
+[node name="VideoStreamPlayer" parent="." index="1"]
+stream = ExtResource("3_1bll1")
+loop = false
+
+[node name="VideoStreamPlayer2" type="VideoStreamPlayer" parent="." index="2"]
+layout_mode = 2
+offset_left = 8.0
+offset_top = 26.0
+offset_right = 1008.0
+offset_bottom = 1026.0
+scale = Vector2(0.345, 0.345)
+stream = ExtResource("5_40tdw")
+loop = true
+
+[node name="LeftChoice" parent="UI/VBoxContainer/ChoiceContainer" index="0"]
+visible = true
+
+[connection signal="finished" from="VideoStreamPlayer" to="." method="_on_video_stream_player_finished"]

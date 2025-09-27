@@ -30,7 +30,12 @@ var is_typing: bool = false
 
 # Fade transition settings
 var use_fade_transitions: bool = true
-var fade_duration: float = 1.0
+var fade_duration: float = 0.7
+
+# Dialogue system
+var dialogue_lines: Array = []
+var current_dialogue_index: int = 0
+var is_dialogue_active: bool = false
 
 func _ready():
 	setup_encounter()
@@ -54,6 +59,10 @@ func setup_encounter():
 	
 	# Configure UI for portrait mode
 	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	
+	# Hide choices initially (they'll be shown after dialogue ends)
+	left_button.visible = false
+	right_button.visible = false
 
 func connect_signals():
 	left_button.pressed.connect(_on_left_choice_pressed)
@@ -64,6 +73,18 @@ func connect_signals():
 func setup_encounter_content():
 	"""Setup the story content for this encounter - override in child classes"""
 	pass
+
+func set_encounter_text(text_content):
+	"""Set encounter text - can be a String or Array of strings for dialogue"""
+	if text_content is Array:
+		# Multi-line dialogue
+		start_dialogue(text_content)
+	else:
+		# Single line text with typewriter effect
+		scene_text.text = ""
+		start_typewriter_effect(str(text_content))
+		# Show choices immediately for single text
+		show_choices()
 
 func load_encounter_data(data: Dictionary):
 	encounter_data = data
@@ -259,7 +280,8 @@ func start_letter_by_letter_effect(text: String):
 		await get_tree().create_timer(typewriter_speed).timeout
 	
 	is_typing = false
-	_on_typewriter_finished()
+	if not is_dialogue_active or current_dialogue_index == dialogue_lines.size() - 1:
+		_on_typewriter_finished()  # Show buttons immediately
 
 func start_word_by_word_effect(text: String):
 	"""Display text word by word"""
@@ -276,13 +298,17 @@ func start_word_by_word_effect(text: String):
 		await get_tree().create_timer(typewriter_speed * 3).timeout  # Slower for words
 	
 	is_typing = false
-	_on_typewriter_finished()
+	if not is_dialogue_active or current_dialogue_index == dialogue_lines.size() - 1:
+		_on_typewriter_finished()  # Show buttons immediately
 
 func skip_typewriter():
 	"""Skip the typewriter effect and show full text immediately"""
 	is_typing = false
 	scene_text.visible_characters = -1  # Show all characters
-	_on_typewriter_finished()  # Show buttons immediately
+	
+	# Only show buttons if we're not in dialogue mode, or if this is the last dialogue line
+	if not is_dialogue_active or current_dialogue_index == dialogue_lines.size() - 1:
+		_on_typewriter_finished()  # Show buttons immediately
 
 func _on_typewriter_finished():
 	"""Called when typewriter effect is complete"""
@@ -318,11 +344,65 @@ func set_typewriter_mode(mode: String):
 	if mode in ["letter", "word"]:
 		typewriter_mode = mode
 
+# Dialogue system methods
+func start_dialogue(lines: Array):
+	"""Start a multi-line dialogue sequence"""
+	dialogue_lines = lines
+	current_dialogue_index = 0
+	is_dialogue_active = true
+	show_current_dialogue_line()
+
+func advance_dialogue():
+	"""Advance to the next dialogue line or end dialogue"""
+	current_dialogue_index += 1
+	if current_dialogue_index >= dialogue_lines.size():
+		end_dialogue()
+	else:
+		# Ensure buttons stay hidden when advancing to non-final lines
+		left_button.visible = false
+		right_button.visible = false
+		show_current_dialogue_line()
+
+func show_current_dialogue_line():
+	"""Display the current dialogue line with typewriter effect"""
+	if current_dialogue_index < dialogue_lines.size():
+		var line = dialogue_lines[current_dialogue_index]
+		scene_text.text = ""
+		
+		# Always hide choices first
+		left_button.visible = false
+		right_button.visible = false
+		
+		start_typewriter_effect(line)
+		
+		# Only show choices if this is the last dialogue line
+		if current_dialogue_index == dialogue_lines.size() - 1:
+			# Wait for typewriter to finish before showing choices
+			await get_tree().create_timer(0.1).timeout
+			while is_typing:
+				await get_tree().process_frame
+			show_choices()
+
+func end_dialogue():
+	"""End the dialogue sequence"""
+	is_dialogue_active = false
+	dialogue_lines.clear()
+	current_dialogue_index = 0
+	# Choices are already shown in show_current_dialogue_line for the last line
+
+func show_choices():
+	"""Show the encounter choices"""
+	left_button.visible = true
+	right_button.visible = true
+
 func _input(event):
-	"""Handle input for skipping typewriter effect"""
-	if is_typing and (event is InputEventScreenTouch or event is InputEventMouseButton):
+	"""Handle input for skipping typewriter effect and advancing dialogue"""
+	if event is InputEventScreenTouch or event is InputEventMouseButton:
 		if event.pressed:
-			skip_typewriter()
+			if is_typing:
+				skip_typewriter()
+			elif is_dialogue_active:
+				advance_dialogue()
 
 # Fade transition methods
 
@@ -357,11 +437,14 @@ func fade_out(duration: float = -1.0):
 func fade_out_and_load_scene(scene_path: String, duration: float = -1.0):
 	"""Fade out and then load a new scene"""
 	if use_fade_transitions:
-		var fade_time = duration if duration > 0 else fade_duration
+		var fade_time = 0.7
 		fade_out(fade_time)
-		await get_tree().create_timer(fade_time).timeout
+		await get_tree().create_timer(duration).timeout
 	
 	# Load the new scene
+	load_scene(scene_path)
+
+func load_scene(scene_path):
 	var story_manager = get_node("/root/Main/StoryManager")
 	if story_manager:
 		story_manager.load_encounter(scene_path)

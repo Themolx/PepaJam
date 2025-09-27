@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://dmvw7o084c6kh"]
+
+[ext_resource type="PackedScene" uid="uid://dux0w3mcjeo0l" path="res://BaseEncounter.tscn" id="1_ufysn"]
+[ext_resource type="Script" uid="uid://ke3jljof4hnq" path="res://encounters/Akt2/Skin/skin_encounter_02.gd" id="2_xcx5u"]
+[ext_resource type="VideoStream" uid="uid://cy8pw4rcare8l" path="res://Assets/Visuals/Skin/skinhead_run_L.ogv" id="3_tplau"]
+[ext_resource type="VideoStream" uid="uid://dwvyx6vt2uc0v" path="res://Assets/Visuals/Skin/skinhead_run_R.ogv" id="4_3wyru"]
+[ext_resource type="VideoStream" uid="uid://gkwi264jykaf" path="res://Assets/Visuals/Skin/skinhead_idle.ogv" id="5_3wyru"]
+
+[node name="SkinEncounter02" instance=ExtResource("1_ufysn")]
+script = ExtResource("2_xcx5u")
+
+[node name="VideoStreamPlayerL" type="VideoStreamPlayer" parent="." index="0"]
+visible = false
+z_index = 1
+layout_mode = 0
+offset_left = 8.0
+offset_top = 26.0
+offset_right = 1008.0
+offset_bottom = 1026.0
+scale = Vector2(0.345, 0.345)
+stream = ExtResource("3_tplau")
+
+[node name="VideoStreamPlayerR" type="VideoStreamPlayer" parent="." index="1"]
+visible = false
+z_index = 1
+layout_mode = 0
+offset_left = 8.0
+offset_top = 26.0
+offset_right = 1008.0
+offset_bottom = 1026.0
+scale = Vector2(0.345, 0.345)
+stream = ExtResource("4_3wyru")
+
+[node name="VideoStreamPlayer" parent="." index="3"]
+stream = ExtResource("5_3wyru")

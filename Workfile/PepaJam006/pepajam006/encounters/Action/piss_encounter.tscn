@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://ce878lshoyvv2"]
+
+[ext_resource type="PackedScene" uid="uid://dux0w3mcjeo0l" path="res://BaseEncounter.tscn" id="1_53vb5"]
+[ext_resource type="Script" uid="uid://bei0ok1cd27lm" path="res://encounters/Action/piss_encounter.gd" id="2_8y8hg"]
+
+[node name="PissEncounter" instance=ExtResource("1_53vb5")]
+script = ExtResource("2_8y8hg")
+
+[node name="UI" parent="." index="3"]
+visible = false

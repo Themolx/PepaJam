@@ -1,7 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://b4xvwqr8jyc2o"]
-
-[ext_resource type="PackedScene" uid="uid://bwxvn2q8cqr2x" path="res://BaseEncounter.tscn" id="1_0hdxr"]
-[ext_resource type="Script" path="res://encounters/BushInvestigationEncounter.gd" id="2_3hjkl"]
-
-[node name="BushInvestigationEncounter" instance=ExtResource("1_0hdxr")]
-script = ExtResource("2_3hjkl")
