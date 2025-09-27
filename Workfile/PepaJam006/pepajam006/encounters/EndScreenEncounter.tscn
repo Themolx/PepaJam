@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://j45qmxqfklqc"]
+
+[ext_resource type="PackedScene" uid="uid://dux0w3mcjeo0l" path="res://BaseEncounter.tscn" id="1_0hdxr"]
+[ext_resource type="Script" path="res://encounters/EndScreenEncounter.gd" id="2_9ijkl"]
+
+[node name="EndScreenEncounter" instance=ExtResource("1_0hdxr")]
+script = ExtResource("2_9ijkl")

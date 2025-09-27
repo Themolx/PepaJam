@@ -9,24 +9,8 @@
 gradient = SubResource("Gradient_aftso")
 
 [node name="PubExitEncounter" instance=ExtResource("1_0k8vj")]
-grow_horizontal = 2
-grow_vertical = 2
 script = ExtResource("2_3h4mk")
 encounter_id = "pub_exit"
 
-[node name="Background" parent="." index="0"]
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Character" parent="." index="1"]
-grow_horizontal = 2
-grow_vertical = 2
+[node name="Character" parent="." index="2"]
 texture = SubResource("GradientTexture2D_3ndyi")
-
-[node name="UI" parent="." index="2"]
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="VBoxContainer" parent="UI" index="0"]
-grow_horizontal = 2
-grow_vertical = 2

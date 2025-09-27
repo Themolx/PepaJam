@@ -20,6 +20,7 @@ signal animation_finished
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var audio_player: AudioStreamPlayer = $AudioPlayer
 @onready var choice_audio: AudioStreamPlayer = $ChoiceAudioPlayer
+@onready var blur_overlay: ColorRect = $BlurOverlay
 
 var encounter_data: Dictionary = {}
 var is_animating: bool = false
@@ -27,9 +28,22 @@ var typewriter_speed: float = 0.05  # Time between each character/word
 var typewriter_mode: String = "letter"  # "letter" or "word"
 var is_typing: bool = false
 
+# Blur transition settings
+var use_blur_transitions: bool = true
+var blur_duration: float = 1.0
+var max_blur_amount: float = 3.0
+
 func _ready():
 	setup_encounter()
 	connect_signals()
+	
+	# Setup blur shader material
+	if blur_overlay:
+		var shader_material = ShaderMaterial.new()
+		var shader = load("res://shaders/blur.gdshader")
+		shader_material.shader = shader
+		shader_material.set_shader_parameter("blur_amount", 0.0)
+		blur_overlay.material = shader_material
 
 func setup_encounter():
 	# Set up visual elements
@@ -317,3 +331,63 @@ func _input(event):
 	if is_typing and (event is InputEventScreenTouch or event is InputEventMouseButton):
 		if event.pressed:
 			skip_typewriter()
+
+# Blur transition methods
+
+func blur_in():
+	"""Blur in from maximum blur"""
+	if not use_blur_transitions or not blur_overlay:
+		return
+	
+	blur_overlay.visible = true
+	blur_overlay.z_index = 100
+	
+	var shader_material = blur_overlay.material as ShaderMaterial
+	if shader_material:
+		shader_material.set_shader_parameter("blur_amount", max_blur_amount)
+		
+		var tween = create_tween()
+		tween.tween_method(func(value): shader_material.set_shader_parameter("blur_amount", value), max_blur_amount, 0.0, blur_duration)
+		await tween.finished
+		blur_overlay.visible = false
+
+func blur_out(duration: float = -1.0):
+	"""Blur out to maximum blur"""
+	if not use_blur_transitions or not blur_overlay:
+		return
+	
+	var blur_time = duration if duration > 0 else blur_duration
+	blur_overlay.visible = true
+	blur_overlay.z_index = 100
+	
+	var shader_material = blur_overlay.material as ShaderMaterial
+	if shader_material:
+		shader_material.set_shader_parameter("blur_amount", 0.0)
+		
+		var tween = create_tween()
+		tween.tween_method(func(value): shader_material.set_shader_parameter("blur_amount", value), 0.0, max_blur_amount, blur_time)
+		await tween.finished
+
+func blur_out_and_load_scene(scene_path: String, duration: float = -1.0):
+	"""Blur out and then load a new scene"""
+	if use_blur_transitions:
+		var blur_time = duration if duration > 0 else blur_duration
+		blur_out(blur_time)
+		await get_tree().create_timer(blur_time).timeout
+	
+	# Load the new scene
+	var story_manager = get_node("/root/Main/StoryManager")
+	if story_manager:
+		story_manager.load_encounter(scene_path)
+
+func set_blur_transitions(enabled: bool):
+	"""Toggle blur transitions on/off"""
+	use_blur_transitions = enabled
+
+func set_blur_duration(duration: float):
+	"""Set the duration of blur transitions"""
+	blur_duration = duration
+
+func set_max_blur_amount(amount: float):
+	"""Set the maximum blur amount"""
+	max_blur_amount = amount

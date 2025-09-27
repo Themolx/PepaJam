@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://bid0ncyk0wkfv"]
+
+[ext_resource type="PackedScene" uid="uid://dux0w3mcjeo0l" path="res://BaseEncounter.tscn" id="1_en15s"]
+[ext_resource type="Script" uid="uid://drxsopdqvj0ay" path="res://encounters/Reuseable/homeless_encounter.gd" id="2_l3lic"]
+
+[node name="HomelessEncounter" instance=ExtResource("1_en15s")]
+script = ExtResource("2_l3lic")
+
+[node name="FadeOverlay" type="ColorRect" parent="." index="7"]
+visible = false
+z_index = 100
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)

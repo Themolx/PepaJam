@@ -2,11 +2,11 @@ extends BaseEncounter
 
 # Story data for this encounter
 var encounter_title = "The Pub Exit"
-var encounter_text = "You stumble out of the pub into the cool night air. The street is quiet except for the distant sound of traffic. You need to get home, but the fresh air is making you feel adventurous. There's a mysterious rustling coming from some nearby bushes."
+var encounter_text = "Zavřeli, tyvole co já teď?"
 
 var encounter_choices = [
 	{
-		"text": "Investigate the mysterious bushes",
+		"text": "Večerka",
 		"next_scene": "res://encounters/BushInvestigationEncounter.tscn",
 		"effects": {
 			"unlock_paths": ["brave_path"],
@@ -14,8 +14,8 @@ var encounter_choices = [
 		}
 	},
 	{
-		"text": "Ignore the noise and head to the main road",
-		"next_scene": "res://encounters/MainRoadEncounter.tscn",
+		"text": "MHD",
+		"next_scene": "res://encounters/Reuseable/homeless_encounter.tscn",
 		"effects": {
 			"set_flags": {"ignored_bush": true}
 		}
@@ -67,13 +67,14 @@ func on_choice_selected(choice_index: int):
 		if story_manager:
 			story_manager.process_effects(choice.effects)
 	
-	# Load next scene
+	# Load next scene with blur transition
 	if choice.has("next_scene"):
-		var story_manager = get_node("/root/Main/StoryManager")
-		if story_manager:
-			story_manager.load_encounter(choice.next_scene)
+		blur_out_and_load_scene(choice.next_scene)
 
 func on_encounter_start():
+	# Blur in when encounter starts
+	blur_in()
+	
 	# Play custom entrance animation for pub exit
 	play_custom_animation("stumble_out")
 	
