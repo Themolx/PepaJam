@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://csyo8h3nnbi8d"]
+
+[ext_resource type="PackedScene" uid="uid://dux0w3mcjeo0l" path="res://BaseEncounter.tscn" id="1_0k8vj"]
+[ext_resource type="Script" uid="uid://dc6jx8no0j023" path="res://encounters/FoodTruckEncounter.gd" id="2_3h4mk"]
+
+[sub_resource type="Gradient" id="Gradient_2hipk"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_oihrc"]
+gradient = SubResource("Gradient_2hipk")
+
+[node name="FoodTruckEncounter" instance=ExtResource("1_0k8vj")]
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_3h4mk")
+encounter_id = "food_truck"
+
+[node name="Background" parent="." index="0"]
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Character" parent="." index="1"]
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_oihrc")
+
+[node name="UI" parent="." index="2"]
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" parent="UI" index="0"]
+grow_horizontal = 2
+grow_vertical = 2

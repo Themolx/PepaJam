@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bdj1couyyrhe0"]
+
+[ext_resource type="PackedScene" uid="uid://bwxvn2q8cqr2x" path="res://BaseEncounter.tscn" id="1_0hdxr"]
+[ext_resource type="Script" path="res://encounters/ParkPathEncounter.gd" id="2_6ijkl"]
+
+[node name="ParkPathEncounter" instance=ExtResource("1_0hdxr")]
+script = ExtResource("2_6ijkl")

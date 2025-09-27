@@ -1,0 +1,256 @@
+{
+  "starting_scene": "pub_exit",
+  "scenes": {
+    "pub_exit": {
+      "id": "pub_exit",
+      "act": 1,
+      "title": "Leaving the Pub",
+      "text": "You stumble out of 'The Wobbly Duck' pub, feeling pleasantly buzzed. The cool night air hits your face as you realize you need to get home. You see two paths ahead.",
+      "choices": [
+        {
+          "text": "Take the shortcut through the park",
+          "next_scene": "park_entrance",
+          "effects": {
+            "set_flags": {"took_shortcut": true}
+          }
+        },
+        {
+          "text": "Walk along the main road",
+          "next_scene": "main_road",
+          "effects": {
+            "set_flags": {"took_main_road": true}
+          }
+        }
+      ]
+    },
+    "park_entrance": {
+      "act": 1,
+      "title": "The Dark Park",
+      "text": "The park looks eerily quiet at night. A jogger runs past, giving you a strange look. You hear rustling in the bushes nearby.",
+      "choices": [
+        {
+          "text": "Investigate the rustling",
+          "next_scene": "bush_investigation",
+          "effects": {
+            "unlock_paths": ["brave_path"],
+            "set_flags": {"investigated_bush": true}
+          }
+        },
+        {
+          "text": "Ignore it and keep walking",
+          "next_scene": "park_path",
+          "effects": {
+            "set_flags": {"ignored_bush": true}
+          }
+        }
+      ]
+    },
+    "main_road": {
+      "act": 1,
+      "title": "The Busy Street",
+      "text": "Cars zoom past you on the main road. You spot a late-night food truck with a long queue of drunk people. Your stomach rumbles.",
+      "choices": [
+        {
+          "text": "Join the food truck queue",
+          "next_scene": "food_truck",
+          "effects": {
+            "unlock_paths": ["food_lover_path"],
+            "set_flags": {"bought_food": true}
+          }
+        },
+        {
+          "text": "Keep walking home",
+          "next_scene": "residential_area",
+          "effects": {
+            "set_flags": {"resisted_food": true}
+          }
+        }
+      ]
+    },
+    "bush_investigation": {
+      "act": 1,
+      "title": "The Mystery Revealed",
+      "text": "You push through the bushes and find... a very confused hedgehog wearing a tiny hat! It looks at you judgmentally before waddling away. You feel oddly proud of your detective skills.",
+      "choices": [
+        {
+          "text": "Follow the hedgehog",
+          "next_scene": "hedgehog_adventure",
+          "effects": {
+            "unlock_paths": ["animal_friend_path"]
+          }
+        },
+        {
+          "text": "Continue through the park",
+          "next_scene": "park_center"
+        }
+      ]
+    },
+    "park_path": {
+      "act": 1,
+      "title": "The Sensible Route",
+      "text": "You wisely ignore the mysterious sounds and continue on the path. A couple walks by holding hands, making you feel slightly lonely but also relieved you didn't end up in a horror movie scenario.",
+      "choices": [
+        {
+          "text": "Sit on a bench and contemplate life",
+          "next_scene": "philosophical_moment"
+        },
+        {
+          "text": "Speed up to get home faster",
+          "next_scene": "park_exit"
+        }
+      ]
+    },
+    "food_truck": {
+      "act": 1,
+      "title": "Midnight Munchies",
+      "text": "The food truck owner, a cheerful man named Gary, serves you the most amazing kebab you've ever tasted. 'Secret ingredient is love!' he winks. You feel energized and ready for anything.",
+      "choices": [
+        {
+          "text": "Ask Gary for life advice",
+          "next_scene": "gary_wisdom",
+          "effects": {
+            "unlock_paths": ["wisdom_path"]
+          }
+        },
+        {
+          "text": "Thank him and continue home",
+          "next_scene": "residential_area"
+        }
+      ]
+    },
+    "hedgehog_adventure": {
+      "act": 2,
+      "title": "An Unlikely Guide",
+      "text": "The hedgehog leads you to a hidden garden behind the park. There's a small gathering of people having a midnight poetry reading. The hedgehog sits in the front row like a regular attendee.",
+      "requires_paths": ["brave_path"],
+      "cutscene": {
+        "video": "res://cutscenes/act2_hedgehog.mp4",
+        "text": "Act 2: Unexpected Encounters"
+      },
+      "choices": [
+        {
+          "text": "Join the poetry reading",
+          "next_scene": "poetry_night",
+          "effects": {
+            "unlock_paths": ["artistic_path"]
+          }
+        },
+        {
+          "text": "Quietly leave with the hedgehog",
+          "next_scene": "secret_exit"
+        }
+      ]
+    },
+    "gary_wisdom": {
+      "act": 2,
+      "title": "Life Lessons from a Kebab Master",
+      "text": "Gary tells you: 'Life is like a kebab, my friend. Sometimes you get the good bits, sometimes you get the salad you didn't ask for, but it all comes together in the end.' You feel strangely enlightened.",
+      "requires_paths": ["food_lover_path"],
+      "cutscene": {
+        "video": "res://cutscenes/act2_wisdom.mp4",
+        "text": "Act 2: Midnight Wisdom"
+      },
+      "choices": [
+        {
+          "text": "Ask to work at the food truck",
+          "next_scene": "career_change",
+          "effects": {
+            "unlock_paths": ["new_life_path"]
+          }
+        },
+        {
+          "text": "Thank him and head home with new perspective",
+          "next_scene": "enlightened_walk"
+        }
+      ]
+    },
+    "poetry_night": {
+      "act": 2,
+      "title": "Unexpected Artistry",
+      "text": "You find yourself reciting a poem about your pub experience. The crowd loves it! The hedgehog even claps with its tiny paws. You've discovered a hidden talent.",
+      "requires_paths": ["artistic_path"],
+      "choices": [
+        {
+          "text": "Stay for the whole event",
+          "next_scene": "artistic_awakening"
+        },
+        {
+          "text": "Leave while you're ahead",
+          "next_scene": "confident_exit"
+        }
+      ]
+    },
+    "career_change": {
+      "act": 3,
+      "title": "A New Beginning",
+      "text": "Six months later, you're running your own food truck called 'The Philosophical Kebab.' Gary is your business partner, and you serve wisdom with every meal. Life took an unexpected turn, but you're happier than ever.",
+      "requires_paths": ["new_life_path"],
+      "cutscene": {
+        "video": "res://cutscenes/act3_new_life.mp4",
+        "text": "Act 3: The Unexpected Ending"
+      },
+      "choices": [
+        {
+          "text": "Restart your journey",
+          "next_scene": "pub_exit"
+        }
+      ]
+    },
+    "home_arrival": {
+      "act": 3,
+      "title": "Finally Home",
+      "text": "You arrive at your front door, keys in hand. As you look back at the path you took, you realize that sometimes the journey home teaches you more about yourself than the destination ever could.",
+      "cutscene": {
+        "video": "res://cutscenes/act3_home.mp4",
+        "text": "Act 3: Journey's End"
+      },
+      "choices": [
+        {
+          "text": "Start a new adventure",
+          "next_scene": "pub_exit"
+        }
+      ]
+    },
+    "residential_area": {
+      "act": 2,
+      "title": "The Home Stretch",
+      "text": "You're getting close to home now. The familiar streets make you feel nostalgic about your evening adventure.",
+      "choices": [
+        {
+          "text": "Take one last detour",
+          "next_scene": "final_choice"
+        },
+        {
+          "text": "Go straight home",
+          "next_scene": "home_arrival"
+        }
+      ]
+    },
+    "final_choice": {
+      "act": 3,
+      "title": "One Last Decision",
+      "text": "You stand at the corner near your house. You can see your bedroom light is still on - did you leave it on, or is someone there?",
+      "choices": [
+        {
+          "text": "Investigate cautiously",
+          "next_scene": "mystery_ending"
+        },
+        {
+          "text": "Just go in normally",
+          "next_scene": "home_arrival"
+        }
+      ]
+    },
+    "mystery_ending": {
+      "act": 3,
+      "title": "The Surprise",
+      "text": "You sneak up to your window and peek in. Your cat is sitting on your desk, having somehow turned on the lamp. It stares at you through the window with that judgmental cat look that says 'You're late, human.' You laugh and head to the front door.",
+      "choices": [
+        {
+          "text": "Go inside and pet your cat",
+          "next_scene": "home_arrival"
+        }
+      ]
+    }
+  }
+}

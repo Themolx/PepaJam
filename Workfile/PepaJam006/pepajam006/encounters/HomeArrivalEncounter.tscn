@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://bjd5hxqf0u1eg"]
+
+[ext_resource type="PackedScene" uid="uid://dux0w3mcjeo0l" path="res://BaseEncounter.tscn" id="1_0hdxr"]
+[ext_resource type="Script" uid="uid://dvoj7ri7h6mxs" path="res://encounters/HomeArrivalEncounter.gd" id="2_5ijkl"]
+
+[node name="HomeArrivalEncounter" instance=ExtResource("1_0hdxr")]
+script = ExtResource("2_5ijkl")

@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cej1couyyrhf1"]
+
+[ext_resource type="PackedScene" uid="uid://bwxvn2q8cqr2x" path="res://BaseEncounter.tscn" id="1_0hdxr"]
+[ext_resource type="Script" path="res://encounters/PhilosophicalMomentEncounter.gd" id="2_7ijkl"]
+
+[node name="PhilosophicalMomentEncounter" instance=ExtResource("1_0hdxr")]
+script = ExtResource("2_7ijkl")
