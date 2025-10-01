@@ -1,16 +1,127 @@
-[gd_scene load_steps=5 format=3 uid="uid://bujf0mm80vx7g"]
+[gd_scene load_steps=25 format=3 uid="uid://bujf0mm80vx7g"]
 
 [ext_resource type="PackedScene" uid="uid://dux0w3mcjeo0l" path="res://BaseEncounter.tscn" id="1_0k8vj"]
 [ext_resource type="Script" uid="uid://dpndd3p1dg5v1" path="res://encounters/PubExitEncounter.gd" id="2_3h4mk"]
+[ext_resource type="VideoStream" uid="uid://bbllc2dwleklp" path="res://Assets/Visuals/Intro/intro_start.ogv" id="3_tprhx"]
+[ext_resource type="VideoStream" uid="uid://bsrb6oes6kt56" path="res://Assets/Visuals/Intro/intro_idle.ogv" id="4_on2kj"]
+[ext_resource type="VideoStream" uid="uid://b5bc5egxxwsdw" path="res://Assets/Visuals/Intro/intro_mobil.ogv" id="4_tvm1e"]
+[ext_resource type="Texture2D" uid="uid://d2soqg3l6u1n5" path="res://Assets/Visuals/Ruce/Rum/panak_RUM_00001.png" id="6_m3lrc"]
+[ext_resource type="Texture2D" uid="uid://ckensm738djdb" path="res://Assets/Visuals/Ruce/Rum/panak_RUM_00002.png" id="7_r5110"]
+[ext_resource type="Texture2D" uid="uid://bicrsh68yi0ag" path="res://Assets/Visuals/Ruce/Rum/panak_RUM_00003.png" id="8_prq4d"]
+[ext_resource type="Texture2D" uid="uid://bv5rxgb5idfqs" path="res://Assets/Visuals/Ruce/Rum/panak_RUM_00004.png" id="9_aecdh"]
+[ext_resource type="Texture2D" uid="uid://cy3p4mos48cyd" path="res://Assets/Visuals/Ruce/Rum/panak_RUM_00005.png" id="10_t20fb"]
+[ext_resource type="Texture2D" uid="uid://ibq5ofbwdylx" path="res://Assets/Visuals/Ruce/Rum/panak_RUM_00006.png" id="11_wahy4"]
+[ext_resource type="Texture2D" uid="uid://coqxp1wadsa4t" path="res://Assets/Visuals/Ruce/Rum/panak_RUM_00007.png" id="12_48uf5"]
+[ext_resource type="Texture2D" uid="uid://ck1i1n6h2sfwn" path="res://Assets/Visuals/Ruce/Rum/panak_RUM_00008.png" id="13_0vptq"]
+[ext_resource type="Texture2D" uid="uid://bdxhs3s10ayk4" path="res://Assets/Visuals/Ruce/Rum/panak_RUM_00009.png" id="14_xsvb1"]
+[ext_resource type="Texture2D" uid="uid://vlty4qyianjk" path="res://Assets/Visuals/Ruce/Rum/panak_RUM_00010.png" id="15_pu528"]
+[ext_resource type="Texture2D" uid="uid://ca6dfkhafnvso" path="res://Assets/Visuals/Ruce/Rum/panak_RUM_00011.png" id="16_ix3re"]
+[ext_resource type="Texture2D" uid="uid://den65jlnsg01b" path="res://Assets/Visuals/Ruce/Rum/panak_RUM_00012.png" id="17_wdj8q"]
+[ext_resource type="Texture2D" uid="uid://cxgqjdufc0ub2" path="res://Assets/Visuals/Ruce/Rum/panak_RUM_00013.png" id="18_1irb6"]
+[ext_resource type="Texture2D" uid="uid://cntiustaviajb" path="res://Assets/Visuals/Ruce/Rum/panak_RUM_00014.png" id="19_cr2bf"]
+[ext_resource type="Texture2D" uid="uid://cddydvmru7n64" path="res://Assets/Visuals/Ruce/Rum/panak_RUM_00015.png" id="20_gcp3w"]
+[ext_resource type="Texture2D" uid="uid://brv2l85ykervf" path="res://Assets/Visuals/Ruce/Rum/panak_RUM_00016.png" id="21_n37qb"]
 
 [sub_resource type="Gradient" id="Gradient_aftso"]
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_3ndyi"]
 gradient = SubResource("Gradient_aftso")
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_pnjb2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_m3lrc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_r5110")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_prq4d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_aecdh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_t20fb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_wahy4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_48uf5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_0vptq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_xsvb1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_pu528")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_ix3re")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_wdj8q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_1irb6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_cr2bf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_gcp3w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_n37qb")
+}],
+"loop": false,
+"name": &"default",
+"speed": 12.0
+}]
+
 [node name="PubExitEncounter" instance=ExtResource("1_0k8vj")]
 script = ExtResource("2_3h4mk")
 encounter_id = "pub_exit"
 
-[node name="Character" parent="." index="2"]
+[node name="VideoStreamPlayer3" type="VideoStreamPlayer" parent="." index="1"]
+visible = false
+z_index = 1
+layout_mode = 2
+offset_left = 8.0
+offset_top = 26.0
+offset_right = 1008.0
+offset_bottom = 1026.0
+scale = Vector2(0.345, 0.345)
+stream = ExtResource("4_tvm1e")
+
+[node name="VideoStreamPlayer" parent="." index="2"]
+stream = ExtResource("3_tprhx")
+loop = false
+
+[node name="VideoStreamPlayer2" type="VideoStreamPlayer" parent="." index="3"]
+layout_mode = 2
+offset_left = 8.0
+offset_top = 26.0
+offset_right = 1008.0
+offset_bottom = 1026.0
+scale = Vector2(0.345, 0.345)
+stream = ExtResource("4_on2kj")
+loop = true
+
+[node name="Character" parent="." index="4"]
 texture = SubResource("GradientTexture2D_3ndyi")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="12"]
+position = Vector2(165, 218)
+scale = Vector2(0.304, 0.304)
+sprite_frames = SubResource("SpriteFrames_pnjb2")
+autoplay = "default"
+frame = 15
+frame_progress = 1.0
+
+[connection signal="finished" from="VideoStreamPlayer" to="." method="_on_video_stream_player_finished"]
+[connection signal="button_up" from="UI/VBoxContainer/ChoiceContainer/RightChoice" to="." method="_on_right_choice_button_up"]

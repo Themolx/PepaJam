@@ -13,12 +13,15 @@ config_version=5
 config/name="PepaJam006"
 run/main_scene="res://Main.tscn"
 config/features=PackedStringArray("4.4", "Mobile")
-config/icon="res://icon.svg"
+boot_splash/bg_color=Color(0, 0, 0, 1)
+boot_splash/image="uid://c07wcb2hrqu68"
+config/icon="uid://c07wcb2hrqu68"
 
 [display]
 
 window/size/viewport_width=360
 window/size/viewport_height=640
+window/size/mode=2
 window/stretch/mode="canvas_items"
 window/handheld/orientation=1
 

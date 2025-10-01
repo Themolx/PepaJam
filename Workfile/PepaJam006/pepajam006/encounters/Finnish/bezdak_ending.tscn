@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://c6dxtwxv83i6t"]
+
+[ext_resource type="PackedScene" uid="uid://dux0w3mcjeo0l" path="res://BaseEncounter.tscn" id="1_nmaky"]
+[ext_resource type="VideoStream" uid="uid://84b7lbi1os0" path="res://Assets/Visuals/Ending/drunk_on_homeless_ending.ogv" id="2_nu03a"]
+[ext_resource type="Script" uid="uid://diyna37sk4t70" path="res://encounters/EndScreenEncounter.gd" id="2_w03p0"]
+[ext_resource type="FontFile" uid="uid://bv68l8kuuqary" path="res://Assets/Fonts/gunplay.ttf" id="4_w6hc7"]
+[ext_resource type="AudioStream" uid="uid://bgsk8r33qblju" path="res://Assets/Audio/konas_zima.wav" id="5_k07ss"]
+
+[node name="BezdakEnding" instance=ExtResource("1_nmaky")]
+script = ExtResource("2_w03p0")
+
+[node name="VideoStreamPlayer" parent="." index="1"]
+stream = ExtResource("2_nu03a")
+
+[node name="SceneText" parent="UI/VBoxContainer" index="2"]
+visible = false
+
+[node name="SceneText2" type="RichTextLabel" parent="UI/VBoxContainer" index="3"]
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("4_w6hc7")
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "Spíš u kámoše"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="10"]
+stream = ExtResource("5_k07ss")
+volume_db = 3.53
+autoplay = true

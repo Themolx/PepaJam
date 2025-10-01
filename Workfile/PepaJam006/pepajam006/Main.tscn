@@ -1,7 +1,27 @@
-[gd_scene load_steps=3 format=3 uid="uid://d1mlqhsnbs87a"]
+[gd_scene load_steps=9 format=3 uid="uid://d1mlqhsnbs87a"]
 
 [ext_resource type="Script" uid="uid://c5177wxtv7cme" path="res://EncounterManager.gd" id="1_0k8vj"]
 [ext_resource type="Script" uid="uid://42gs2xu2jhm8" path="res://StoryManager.gd" id="2_3h4mk"]
+[ext_resource type="AudioStream" uid="uid://chy7td4mv2cde" path="res://Assets/Audio/dramatic-skies-381228.mp3" id="3_r0du0"]
+
+[sub_resource type="Gradient" id="Gradient_uu6xs"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_r0du0"]
+gradient = SubResource("Gradient_uu6xs")
+fill_from = Vector2(1, 1)
+
+[sub_resource type="Curve" id="Curve_uu6xs"]
+_data = [Vector2(0, 0), 0.0, 1.00142, 0, 0, Vector2(0.233268, 0.408684), 1.02379, 1.02379, 0, 0, Vector2(0.597441, 0.603105), 0.998709, 0.998709, 0, 0, Vector2(1, 1), 0.540541, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_r0du0"]
+curve = SubResource("Curve_uu6xs")
+
+[sub_resource type="Environment" id="Environment_uu6xs"]
+background_mode = 3
+glow_bloom = 0.83
+adjustment_color_correction = SubResource("CurveTexture_r0du0")
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -13,6 +33,7 @@ grow_vertical = 2
 script = ExtResource("1_0k8vj")
 
 [node name="EncounterContainer" type="Control" parent="."]
+z_index = 1
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -61,3 +82,24 @@ vertical_alignment = 1
 
 [node name="StoryManager" type="Node" parent="."]
 script = ExtResource("2_3h4mk")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+z_index = -2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_r0du0")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_uu6xs")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_r0du0")
+volume_db = -17.553
+autoplay = true
+
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]

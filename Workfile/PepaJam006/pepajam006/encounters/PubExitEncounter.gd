@@ -9,15 +9,15 @@ var dialogue = [
 var encounter_choices = [
 	{
 		"text": "Večerka",
-		"next_scene": "res://encounters/Akt2/Skin/skin_encounter_01.tscn",
+		"next_scene": "res://encounters/Akt1/Vecerka/vecerka_encounter_01.tscn",
 		"effects": {
 			"unlock_paths": ["brave_path"],
 			"set_flags": {"investigated_bush": true}
 		}
 	},
 	{
-		"text": "MHD",
-		"next_scene": "res://encounters/Reuseable/homeless_encounter.tscn",
+		"text": "Taxi",
+		"next_scene": "res://encounters/Akt1/pub_encounter_taxi.tscn",
 		"effects": {
 			"set_flags": {"ignored_bush": true}
 		}
@@ -61,6 +61,11 @@ func on_choice_selected(choice_index: int):
 	
 	var choice = encounter_choices[choice_index]
 	
+	
+	
+	
+	if choice.has("next_scene"):
+		fade_out_and_load_scene(choice.next_scene)
 	# Process effects if they exist
 	if choice.has("effects"):
 		var story_manager = get_node("/root/Main/StoryManager")
@@ -68,8 +73,7 @@ func on_choice_selected(choice_index: int):
 			story_manager.process_effects(choice.effects)
 	
 	# Load next scene with fade transition
-	if choice.has("next_scene"):
-		fade_out_and_load_scene(choice.next_scene)
+	
 
 func on_encounter_start():
 	# Fade in when encounter starts
@@ -99,3 +103,13 @@ func setup_animations():
 	
 	animation_library.add_animation("stumble_out", stumble_anim)
 	animation_player.add_animation_library("pub_exit", animation_library)
+
+
+func _on_video_stream_player_finished() -> void:
+	$VideoStreamPlayer.hide()
+	$VideoStreamPlayer2.play()
+
+
+func _on_right_choice_button_up() -> void:
+	$VideoStreamPlayer3.show()
+	$VideoStreamPlayer3.play()

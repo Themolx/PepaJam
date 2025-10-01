@@ -9,15 +9,15 @@ var dialogue = [
 var encounter_choices = [
 	{
 		"text": "Pokračovat",
-		"next_scene": "res://encounters/Akt2/Skin/skin_encounter_04.tscn",
+		"next_scene": "res://encounters/Akt2/Florenc/florenc_encounter.tscn",
 		"effects": {
 			"unlock_paths": ["brave_path"],
 			"set_flags": {"investigated_bush": true}
 		}
 	},
 	{
-		"text": "Jít dál",
-		"next_scene": "res://encounters/Akt2/Skin/skin_encounter_04.tscn",
+		"text": "Utéct",
+		"next_scene": "res://encounters/Akt2/Florenc/florenc_encounter.tscn",
 		"effects": {
 			"set_flags": {"ignored_bush": true}
 		}
@@ -60,6 +60,7 @@ func on_choice_selected(choice_index: int):
 		return
 	
 	var choice = encounter_choices[choice_index]
+
 	
 	# Process effects if they exist
 	if choice.has("effects"):
@@ -69,11 +70,11 @@ func on_choice_selected(choice_index: int):
 	
 	# Load next scene with fade transition
 	if choice.has("next_scene"):
-		load_scene(choice.next_scene)
+		fade_out_and_load_scene(choice.next_scene)
 
 func on_encounter_start():
 	# Fade in when encounter starts
-	fade_in()
+	#fade_in()
 	
 	# Play custom entrance animation for pub exit
 	#play_custom_animation("stumble_out")

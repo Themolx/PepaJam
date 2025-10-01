@@ -1,0 +1,47 @@
+[gd_scene load_steps=4 format=3 uid="uid://dh1ig6gqm23km"]
+
+[ext_resource type="PackedScene" uid="uid://dux0w3mcjeo0l" path="res://BaseEncounter.tscn" id="1_euoxr"]
+[ext_resource type="VideoStream" uid="uid://crpal6rva8gx4" path="res://Assets/Visuals/Homeless/homeless_happy.ogv" id="2_w5iyn"]
+[ext_resource type="VideoStream" uid="uid://ck45y3aahefa8" path="res://Assets/Visuals/Homeless/homeless_sad.ogv" id="3_2y1ri"]
+
+[node name="HomelessEncounter01HH" instance=ExtResource("1_euoxr")]
+
+[node name="VideoStreamPlayer" parent="." index="1"]
+stream = ExtResource("2_w5iyn")
+loop = false
+
+[node name="VideoStreamPlayer3" type="VideoStreamPlayer" parent="." index="2"]
+layout_mode = 2
+offset_left = 8.0
+offset_top = 26.0
+offset_right = 1008.0
+offset_bottom = 1026.0
+scale = Vector2(0.345, 0.345)
+stream = ExtResource("2_w5iyn")
+autoplay = true
+
+[node name="VideoStreamPlayer4" type="VideoStreamPlayer" parent="." index="3"]
+layout_mode = 2
+offset_left = 8.0
+offset_top = 26.0
+offset_right = 1008.0
+offset_bottom = 1026.0
+scale = Vector2(0.345, 0.345)
+stream = ExtResource("2_w5iyn")
+autoplay = true
+
+[node name="VideoStreamPlayer2" type="VideoStreamPlayer" parent="." index="4"]
+layout_mode = 2
+offset_left = 8.0
+offset_top = 26.0
+offset_right = 1008.0
+offset_bottom = 1026.0
+scale = Vector2(0.345, 0.345)
+stream = ExtResource("3_2y1ri")
+autoplay = true
+
+[node name="ChoiceContainer" parent="UI/VBoxContainer" index="4"]
+visible = false
+
+[node name="LeftChoice" parent="UI/VBoxContainer/ChoiceContainer" index="0"]
+visible = false

@@ -1,7 +1,24 @@
-[gd_scene load_steps=3 format=3 uid="uid://dux0w3mcjeo0l"]
+[gd_scene load_steps=12 format=3 uid="uid://dux0w3mcjeo0l"]
 
 [ext_resource type="Script" uid="uid://4imnmyto8cd" path="res://BaseEncounter.gd" id="1_0k8vj"]
 [ext_resource type="FontFile" uid="uid://bv68l8kuuqary" path="res://Assets/Fonts/gunplay.ttf" id="2_kiq5q"]
+[ext_resource type="Texture2D" uid="uid://kw0tgx6ygahj" path="res://Assets/UI/tlacitko_on.png" id="3_6gecg"]
+[ext_resource type="FontFile" uid="uid://ca4u0kc3sv4yo" path="res://Assets/Fonts/gunplay3.ttf" id="3_dofqd"]
+[ext_resource type="Texture2D" uid="uid://cmwp0cl6jkvcl" path="res://Assets/UI/ramecek_v001.png" id="3_kiq5q"]
+[ext_resource type="Texture2D" uid="uid://dmmvfl46excpt" path="res://Assets/UI/tlacitko_off.png" id="4_a8lk5"]
+[ext_resource type="Texture2D" uid="uid://c4bakt0wv013u" path="res://Assets/UI/mapa_01.png" id="6_a8lk5"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wju3c"]
+texture = ExtResource("4_a8lk5")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3tj72"]
+texture = ExtResource("3_6gecg")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_h3wir"]
+texture = ExtResource("3_6gecg")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7k2i8"]
+texture = ExtResource("4_a8lk5")
 
 [node name="BaseEncounter" type="Control"]
 layout_mode = 3
@@ -12,6 +29,8 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_0k8vj")
 metadata/_edit_lock_ = true
+metadata/_edit_horizontal_guides_ = [368.0]
+metadata/_edit_vertical_guides_ = [354.0, 190.0]
 
 [node name="Background" type="TextureRect" parent="."]
 visible = false
@@ -33,6 +52,7 @@ offset_bottom = 1026.0
 scale = Vector2(0.345, 0.345)
 autoplay = true
 loop = true
+buffering_msec = 1000
 
 [node name="Character" type="TextureRect" parent="."]
 visible = false
@@ -75,6 +95,7 @@ grow_vertical = 2
 [node name="SceneTitle" type="Label" parent="UI/VBoxContainer"]
 visible = false
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_dofqd")
 theme_override_font_sizes/font_size = 24
 text = "Scene Title"
 horizontal_alignment = 1
@@ -88,8 +109,9 @@ layout_mode = 2
 theme_override_fonts/normal_font = ExtResource("2_kiq5q")
 theme_override_font_sizes/normal_font_size = 24
 bbcode_enabled = true
-text = "Scene description will appear here..."
+text = "..."
 fit_content = true
+horizontal_alignment = 1
 
 [node name="Control" type="Control" parent="UI/VBoxContainer"]
 layout_mode = 2
@@ -102,21 +124,61 @@ size_flags_vertical = 0
 alignment = 1
 
 [node name="LeftChoice" type="Button" parent="UI/VBoxContainer/ChoiceContainer"]
-visible = false
 layout_mode = 2
 size_flags_horizontal = 3
+focus_mode = 0
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 0
 theme_override_fonts/font = ExtResource("2_kiq5q")
-theme_override_font_sizes/font_size = 14
+theme_override_font_sizes/font_size = 18
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxTexture_wju3c")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_wju3c")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxTexture_3tj72")
+theme_override_styles/hover = SubResource("StyleBoxTexture_3tj72")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxTexture_h3wir")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_wju3c")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxTexture_7k2i8")
+theme_override_styles/normal = SubResource("StyleBoxTexture_3tj72")
 text = "Left Choice"
 autowrap_mode = 1
 clip_text = true
 
 [node name="RightChoice" type="Button" parent="UI/VBoxContainer/ChoiceContainer"]
-visible = false
 layout_mode = 2
 size_flags_horizontal = 3
+focus_mode = 0
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 0
 theme_override_fonts/font = ExtResource("2_kiq5q")
-theme_override_font_sizes/font_size = 14
+theme_override_font_sizes/font_size = 18
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxTexture_wju3c")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_wju3c")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxTexture_3tj72")
+theme_override_styles/hover = SubResource("StyleBoxTexture_3tj72")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxTexture_wju3c")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_wju3c")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxTexture_3tj72")
+theme_override_styles/normal = SubResource("StyleBoxTexture_3tj72")
 text = "Right Choice"
 autowrap_mode = 1
 
@@ -139,3 +201,35 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+z_index = 1
+layout_mode = 0
+offset_left = -21.345
+offset_right = 978.655
+offset_bottom = 1000.0
+scale = Vector2(0.395, 0.395)
+texture = ExtResource("3_kiq5q")
+metadata/_edit_lock_ = true
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+z_index = -1
+layout_mode = 0
+offset_left = -20.0
+offset_top = 382.0
+offset_right = 980.0
+offset_bottom = 1382.0
+scale = Vector2(0.395, 0.25)
+mouse_filter = 2
+texture = ExtResource("3_kiq5q")
+
+[node name="TextureRect3" type="TextureRect" parent="TextureRect2"]
+z_index = -1
+layout_mode = 0
+offset_left = 78.0
+offset_top = 48.0
+offset_right = 3078.0
+offset_bottom = 2248.0
+scale = Vector2(0.285, 0.4)
+mouse_filter = 2
+texture = ExtResource("6_a8lk5")

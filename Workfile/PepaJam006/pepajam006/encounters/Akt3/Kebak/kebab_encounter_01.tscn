@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://coinwnrxukcau"]
+
+[ext_resource type="PackedScene" uid="uid://dux0w3mcjeo0l" path="res://BaseEncounter.tscn" id="1_xiwkl"]
+[ext_resource type="Script" uid="uid://bwt2psxulfync" path="res://encounters/Akt3/Kebak/kebab_encounter_01.gd" id="2_580ub"]
+[ext_resource type="Texture2D" uid="uid://dylfij8bs0r55" path="res://Assets/Visuals/Kebab/kebab_00000.png" id="3_pcgqx"]
+
+[node name="KebabEncounter01" instance=ExtResource("1_xiwkl")]
+script = ExtResource("2_580ub")
+
+[node name="Background" parent="." index="0"]
+texture = ExtResource("3_pcgqx")
+
+[node name="Character" parent="." index="2"]
+visible = true
+offset_left = -168.0
+offset_top = -297.0
+offset_right = 175.0
+offset_bottom = 52.0
+texture = ExtResource("3_pcgqx")

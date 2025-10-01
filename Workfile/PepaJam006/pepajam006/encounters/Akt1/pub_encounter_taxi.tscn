@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://bls1xdf2yc1c3"]
+
+[ext_resource type="PackedScene" uid="uid://dux0w3mcjeo0l" path="res://BaseEncounter.tscn" id="1_rvdft"]
+[ext_resource type="Script" uid="uid://c061yxu0ix2mh" path="res://encounters/Akt1/pub_encounter_taxi.gd" id="2_faw1m"]
+[ext_resource type="VideoStream" uid="uid://b5bc5egxxwsdw" path="res://Assets/Visuals/Intro/intro_mobil.ogv" id="3_xbtpl"]
+[ext_resource type="VideoStream" uid="uid://bsrb6oes6kt56" path="res://Assets/Visuals/Intro/intro_idle.ogv" id="4_xbtpl"]
+
+[node name="PubEncounterTaxi" instance=ExtResource("1_rvdft")]
+script = ExtResource("2_faw1m")
+
+[node name="VideoStreamPlayer" parent="." index="1"]
+stream = ExtResource("3_xbtpl")
+loop = false
+
+[node name="VideoStreamPlayer2" type="VideoStreamPlayer" parent="." index="2"]
+offset_left = 10.76
+offset_top = 34.97
+offset_right = 1010.76
+offset_bottom = 1034.97
+scale = Vector2(0.345, 0.345)
+stream = ExtResource("4_xbtpl")
+loop = true
+
+[connection signal="finished" from="VideoStreamPlayer" to="." method="_on_video_stream_player_finished"]

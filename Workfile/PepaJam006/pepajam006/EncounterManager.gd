@@ -122,3 +122,7 @@ func _input(event):
 # Debug function to restart story
 func restart_story():
 	story_manager.restart_game()
+
+
+func _on_audio_stream_player_finished() -> void:
+	$AudioStreamPlayer.play()

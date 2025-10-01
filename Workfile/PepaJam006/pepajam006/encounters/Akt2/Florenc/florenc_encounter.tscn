@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://41tr4yrfms28"]
+
+[ext_resource type="PackedScene" uid="uid://dux0w3mcjeo0l" path="res://BaseEncounter.tscn" id="1_5p4y1"]
+[ext_resource type="Script" uid="uid://cw2k2fkq7otwt" path="res://encounters/Akt2/Florenc/florenc_encounter.gd" id="2_fnvcf"]
+[ext_resource type="VideoStream" uid="uid://bi8dgm7sn6sfs" path="res://Assets/Visuals/florenc/florenc_idle.ogv" id="3_d2dqw"]
+
+[node name="FlorencEncounter" instance=ExtResource("1_5p4y1")]
+script = ExtResource("2_fnvcf")
+
+[node name="VideoStreamPlayer" parent="." index="1"]
+stream = ExtResource("3_d2dqw")

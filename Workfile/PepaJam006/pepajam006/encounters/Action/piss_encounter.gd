@@ -1,9 +1,9 @@
 extends BaseEncounter
-
+@export var new_scene: String = "res://encounters/Finnish/policie_ending.tscn"
 # Pissing system variables
 var is_pissing = false
 var piss_timer = 0.0
-var max_piss_time = 15.0
+var max_piss_time = 14.0
 var droplet_particles: GPUParticles2D
 var stream_line: Line2D
 var start_position: Vector2
@@ -19,21 +19,91 @@ var arc_height = 80.0  # Height of the arc
 var end_point_offset_time = 0.0
 var end_point_offset_radius = 15.0
 
-func _ready():
+# Story data for this encounter
+var encounter_title = "An Unlikely Guide"
+var encounter_text = "Toje pohoda, chcát v sedě."
+
+var encounter_choices = [
+	{
+		"text": "Dát cígo.",
+		"next_scene": "res://encounters/Akt2/Dita/dita_encounter_01.tscn",
+		"effects": {
+			"unlock_paths": ["artistic_path"]
+		}
+	},
+	{
+		"text": "Sam nemam.",
+		"next_scene": "res://encounters/Akt2/Dita/dita_encounter_01.tscn"
+	}
+]
+
+
+func on_encounter_start():
+	# Fade in when encounter starts
+	fade_in()
+
+func on_choice_selected(choice_index: int):
+	"""Handle choice selection with effects and next scene loading"""
+	if choice_index < 0 or choice_index >= encounter_choices.size():
+		print("Invalid choice index: ", choice_index)
+		return
+	
+	var choice = encounter_choices[choice_index]
+	
+	if choice_index == 0:
+		$VideoStreamPlayerH.play()
+		$VideoStreamPlayerH.show()
+		await get_tree().create_timer(2).timeout
+	else:
+		$VideoStreamPlayerS.play()
+		$VideoStreamPlayerS.show()
+	await get_tree().create_timer(1.5).timeout
+	
+	# Process effects if they exist
+	if choice.has("effects"):
+		var story_manager = get_node("/root/Main/StoryManager")
+		if story_manager:
+			story_manager.process_effects(choice.effects)
+	
+	# Load next scene
+	if choice.has("next_scene"):
+		var story_manager = get_node("/root/Main/StoryManager")
+		if story_manager:
+			story_manager.load_encounter(choice.next_scene)
+
+func setup_encounter_content():
+	"""Setup the story content for this encounter"""
+	scene_title.text = encounter_title
+	left_button.text = encounter_choices[0].text
+	right_button.text = encounter_choices[1].text
+	
+	# Use the new dialogue system for better text handling
+	set_encounter_text(encounter_text)
+
+
+func _ready() -> void:
 	encounter_id = "piss_encounter"
 	setup_piss_system()
+
+
+	set_typewriter_mode("letter")  # or "word"
+	set_typewriter_speed(0.03)  # Faster typing for drunk stumbling effect
+	
+	# Set the story content
+	setup_encounter_content()
+	
 	super._ready()
 
 func setup_piss_system():
 	"""Initialize the pissing visual system"""
 	# Set start position at bottom center of screen
-	start_position = Vector2(get_viewport().size.x / 2, get_viewport().size.y)
+	start_position = Vector2(184, 368)
 	
 	# Create simple line for stream
 	stream_line = Line2D.new()
 	add_child(stream_line)
 	stream_line.width = stream_width
-	stream_line.default_color = Color.YELLOW
+	stream_line.default_color = Color(0.774, 0.707, 0.234, 0.89)
 	stream_line.visible = false
 	
 	# Create particle system for droplets at END of stream
@@ -61,7 +131,7 @@ func setup_piss_system():
 func create_droplet_texture() -> ImageTexture:
 	"""Create a simple yellow droplet texture"""
 	var image = Image.create(8, 8, false, Image.FORMAT_RGBA8)
-	image.fill(Color.YELLOW)
+	image.fill(Color(0.774, 0.707, 0.234, 0.89))
 	var texture = ImageTexture.new()
 	texture.set_image(image)
 	return texture
@@ -106,8 +176,8 @@ func update_piss_stream():
 	# Middle 70% stays at full intensity
 	
 	# Calculate end position based on mouse with intensity modulation
-	var direction = (mouse_position - start_position).normalized()
-	var base_distance = min((mouse_position - start_position).length(), max_stream_distance)
+	var direction = ((mouse_position - Vector2(0, 180)) - start_position).normalized()
+	var base_distance = min(((mouse_position - Vector2(0, 180)) - start_position).length(), max_stream_distance)
 	var actual_distance = base_distance * intensity_multiplier
 	var base_end_position = start_position + direction * actual_distance
 	
@@ -159,7 +229,7 @@ func stop_pissing():
 	await tween.finished
 	
 	# Load next scene (you can change this to whatever scene you want)
-	get_tree().change_scene_to_file("res://encounters/HomeArrivalEncounter.tscn")
+	fade_out_and_load_scene(new_scene)
 
 func _input(event):
 	"""Handle input for aiming the piss stream"""
@@ -168,3 +238,8 @@ func _input(event):
 		pass
 	
 	# Don't call super._input() to prevent dialogue system interference
+
+
+func _on_audio_stream_player_finished() -> void:
+	$AudioStreamPlayer.play()
+	pass # Replace with function body.

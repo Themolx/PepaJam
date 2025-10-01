@@ -1,0 +1,23 @@
+[gd_scene load_steps=6 format=3 uid="uid://743x7sg30krm"]
+
+[ext_resource type="PackedScene" uid="uid://bid0ncyk0wkfv" path="res://encounters/Reuseable/homeless_encounter.tscn" id="1_5x0bt"]
+[ext_resource type="VideoStream" uid="uid://bagg4iryv8l3m" path="res://Assets/Visuals/Homeless/KEBAB/homeless_happy_KEBAB.ogv" id="2_rg75g"]
+[ext_resource type="VideoStream" uid="uid://dovma0mkp2xof" path="res://Assets/Visuals/Homeless/KEBAB/homeless_sad_KEBAB.ogv" id="3_a4ek0"]
+[ext_resource type="VideoStream" uid="uid://50oqfc4rpr0o" path="res://Assets/Visuals/Homeless/KEBAB/homeless_cigo_KEBAB.ogv" id="4_tg812"]
+[ext_resource type="VideoStream" uid="uid://cpwy13jbss2bi" path="res://Assets/Visuals/Homeless/KEBAB/homeless_idle_KEBAB.ogv" id="5_47dom"]
+
+[node name="HomelessEncounter01Kebab" instance=ExtResource("1_5x0bt")]
+next_scene_set_1 = "res://encounters/Finnish/bezdak_ending.tscn"
+next_scene_set_2 = "res://encounters/Finnish/lavicka_ending.tscn"
+
+[node name="VideoStreamPlayerH" parent="." index="1"]
+stream = ExtResource("2_rg75g")
+
+[node name="VideoStreamPlayerS" parent="." index="2"]
+stream = ExtResource("3_a4ek0")
+
+[node name="VideoStreamPlayer" parent="." index="3"]
+stream = ExtResource("4_tg812")
+
+[node name="VideoStreamPlayer2" parent="." index="4"]
+stream = ExtResource("5_47dom")

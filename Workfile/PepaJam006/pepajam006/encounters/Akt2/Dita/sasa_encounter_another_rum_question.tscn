@@ -1,0 +1,89 @@
+[gd_scene load_steps=21 format=3 uid="uid://dl5ay642tp5tn"]
+
+[ext_resource type="PackedScene" uid="uid://dux0w3mcjeo0l" path="res://BaseEncounter.tscn" id="1_o8k11"]
+[ext_resource type="Script" uid="uid://cm4w3gnxmsng0" path="res://encounters/Akt2/Dita/sasa_encounter_another_rum_question.gd" id="2_io80q"]
+[ext_resource type="VideoStream" uid="uid://br1mhj7hbe6f8" path="res://Assets/Visuals/sasa/sasa_indle.ogv" id="3_er5ou"]
+[ext_resource type="Texture2D" uid="uid://d2soqg3l6u1n5" path="res://Assets/Visuals/Ruce/Rum/panak_RUM_00001.png" id="4_aghm2"]
+[ext_resource type="Texture2D" uid="uid://ckensm738djdb" path="res://Assets/Visuals/Ruce/Rum/panak_RUM_00002.png" id="5_uc3np"]
+[ext_resource type="Texture2D" uid="uid://bicrsh68yi0ag" path="res://Assets/Visuals/Ruce/Rum/panak_RUM_00003.png" id="6_aw46r"]
+[ext_resource type="Texture2D" uid="uid://bv5rxgb5idfqs" path="res://Assets/Visuals/Ruce/Rum/panak_RUM_00004.png" id="7_v8ywg"]
+[ext_resource type="Texture2D" uid="uid://cy3p4mos48cyd" path="res://Assets/Visuals/Ruce/Rum/panak_RUM_00005.png" id="8_6xep4"]
+[ext_resource type="Texture2D" uid="uid://ibq5ofbwdylx" path="res://Assets/Visuals/Ruce/Rum/panak_RUM_00006.png" id="9_0juuu"]
+[ext_resource type="Texture2D" uid="uid://coqxp1wadsa4t" path="res://Assets/Visuals/Ruce/Rum/panak_RUM_00007.png" id="10_l17po"]
+[ext_resource type="Texture2D" uid="uid://ck1i1n6h2sfwn" path="res://Assets/Visuals/Ruce/Rum/panak_RUM_00008.png" id="11_8hgxx"]
+[ext_resource type="Texture2D" uid="uid://bdxhs3s10ayk4" path="res://Assets/Visuals/Ruce/Rum/panak_RUM_00009.png" id="12_ngbre"]
+[ext_resource type="Texture2D" uid="uid://vlty4qyianjk" path="res://Assets/Visuals/Ruce/Rum/panak_RUM_00010.png" id="13_5fjwb"]
+[ext_resource type="Texture2D" uid="uid://ca6dfkhafnvso" path="res://Assets/Visuals/Ruce/Rum/panak_RUM_00011.png" id="14_3mnim"]
+[ext_resource type="Texture2D" uid="uid://den65jlnsg01b" path="res://Assets/Visuals/Ruce/Rum/panak_RUM_00012.png" id="15_f24sg"]
+[ext_resource type="Texture2D" uid="uid://cxgqjdufc0ub2" path="res://Assets/Visuals/Ruce/Rum/panak_RUM_00013.png" id="16_iy6qr"]
+[ext_resource type="Texture2D" uid="uid://cntiustaviajb" path="res://Assets/Visuals/Ruce/Rum/panak_RUM_00014.png" id="17_m003q"]
+[ext_resource type="Texture2D" uid="uid://cddydvmru7n64" path="res://Assets/Visuals/Ruce/Rum/panak_RUM_00015.png" id="18_le17a"]
+[ext_resource type="Texture2D" uid="uid://brv2l85ykervf" path="res://Assets/Visuals/Ruce/Rum/panak_RUM_00016.png" id="19_w53t5"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2itd1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_aghm2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_uc3np")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_aw46r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_v8ywg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_6xep4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_0juuu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_l17po")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_8hgxx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_ngbre")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_5fjwb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_3mnim")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_f24sg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_iy6qr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_m003q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_le17a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_w53t5")
+}],
+"loop": false,
+"name": &"default",
+"speed": 12.0
+}]
+
+[node name="SasaEncounterAnotherRumQuestion" instance=ExtResource("1_o8k11")]
+script = ExtResource("2_io80q")
+
+[node name="VideoStreamPlayer" parent="." index="1"]
+stream = ExtResource("3_er5ou")
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="." index="10"]
+position = Vector2(182, 201)
+scale = Vector2(0.338, 0.338)
+sprite_frames = SubResource("SpriteFrames_2itd1")
+autoplay = "default"

@@ -1,0 +1,50 @@
+[gd_scene load_steps=7 format=3 uid="uid://c5lpj04x1oe10"]
+
+[ext_resource type="PackedScene" uid="uid://dux0w3mcjeo0l" path="res://BaseEncounter.tscn" id="1_ceo7d"]
+[ext_resource type="Script" uid="uid://h0weji54n1au" path="res://encounters/Akt2/Dita/dita_encounter_01.gd" id="2_qigxm"]
+[ext_resource type="VideoStream" uid="uid://ckujtqbnrrwee" path="res://Assets/Visuals/Dita/kotva_start.ogv" id="3_kchgr"]
+[ext_resource type="VideoStream" uid="uid://db3vxmv68agg" path="res://Assets/Visuals/Dita/kotva_klepani.ogv" id="4_40sty"]
+[ext_resource type="VideoStream" uid="uid://ddibxa2q4mtmf" path="res://Assets/Visuals/Dita/kotva_NedamPivo.ogv" id="5_abh2u"]
+[ext_resource type="VideoStream" uid="uid://xb0fypv7vk2l" path="res://Assets/Visuals/Dita/kotva_idle.ogv" id="6_p8npg"]
+
+[node name="DitaEncounter01" instance=ExtResource("1_ceo7d")]
+script = ExtResource("2_qigxm")
+
+[node name="VideoStreamPlayer" parent="." index="1"]
+stream = ExtResource("3_kchgr")
+loop = false
+
+[node name="VideoStreamPlayerZ" type="VideoStreamPlayer" parent="." index="2"]
+visible = false
+z_index = 1
+layout_mode = 2
+offset_left = 8.0
+offset_top = 26.0
+offset_right = 1008.0
+offset_bottom = 1026.0
+scale = Vector2(0.345, 0.345)
+stream = ExtResource("4_40sty")
+
+[node name="VideoStreamPlayerT" type="VideoStreamPlayer" parent="." index="3"]
+visible = false
+z_index = 1
+layout_mode = 2
+offset_left = 8.0
+offset_top = 26.0
+offset_right = 1008.0
+offset_bottom = 1026.0
+scale = Vector2(0.345, 0.345)
+stream = ExtResource("5_abh2u")
+loop = true
+
+[node name="VideoStreamPlayer2" type="VideoStreamPlayer" parent="." index="4"]
+layout_mode = 2
+offset_left = 8.0
+offset_top = 26.0
+offset_right = 1008.0
+offset_bottom = 1026.0
+scale = Vector2(0.345, 0.345)
+stream = ExtResource("6_p8npg")
+loop = true
+
+[connection signal="finished" from="VideoStreamPlayer" to="." method="_on_video_stream_player_finished"]

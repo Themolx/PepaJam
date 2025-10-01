@@ -1,12 +1,57 @@
-[gd_scene load_steps=3 format=3 uid="uid://bid0ncyk0wkfv"]
+[gd_scene load_steps=7 format=3 uid="uid://bid0ncyk0wkfv"]
 
 [ext_resource type="PackedScene" uid="uid://dux0w3mcjeo0l" path="res://BaseEncounter.tscn" id="1_en15s"]
 [ext_resource type="Script" uid="uid://drxsopdqvj0ay" path="res://encounters/Reuseable/homeless_encounter.gd" id="2_l3lic"]
+[ext_resource type="VideoStream" uid="uid://bnh7che0prupa" path="res://Assets/Visuals/Homeless/homeless_cigo.ogv" id="3_1dk63"]
+[ext_resource type="VideoStream" uid="uid://crpal6rva8gx4" path="res://Assets/Visuals/Homeless/homeless_happy.ogv" id="4_3wdsx"]
+[ext_resource type="VideoStream" uid="uid://bvaeqr64rfhhm" path="res://Assets/Visuals/Homeless/homeless_idle.ogv" id="4_gj1i0"]
+[ext_resource type="VideoStream" uid="uid://ck45y3aahefa8" path="res://Assets/Visuals/Homeless/homeless_sad.ogv" id="5_6dvnc"]
 
-[node name="HomelessEncounter" instance=ExtResource("1_en15s")]
+[node name="HomelessEncounter01" instance=ExtResource("1_en15s")]
 script = ExtResource("2_l3lic")
+next_scene_set_1 = "res://encounters/Akt2/Dita/dita_encounter_03.tscn"
+next_scene_set_2 = "res://encounters/Akt2/Dita/dita_encounter_03.tscn"
 
-[node name="FadeOverlay2" type="ColorRect" parent="." index="7"]
+[node name="VideoStreamPlayerH" type="VideoStreamPlayer" parent="." index="1"]
+visible = false
+z_index = 1
+layout_mode = 2
+offset_left = 8.0
+offset_top = 26.0
+offset_right = 1008.0
+offset_bottom = 1026.0
+scale = Vector2(0.345, 0.345)
+stream = ExtResource("4_3wdsx")
+loop = true
+
+[node name="VideoStreamPlayerS" type="VideoStreamPlayer" parent="." index="2"]
+visible = false
+z_index = 1
+layout_mode = 2
+offset_left = 8.0
+offset_top = 26.0
+offset_right = 1008.0
+offset_bottom = 1026.0
+scale = Vector2(0.345, 0.345)
+stream = ExtResource("5_6dvnc")
+loop = true
+
+[node name="VideoStreamPlayer" parent="." index="3"]
+stream = ExtResource("3_1dk63")
+loop = false
+
+[node name="VideoStreamPlayer2" type="VideoStreamPlayer" parent="." index="4"]
+layout_mode = 2
+offset_left = 8.0
+offset_top = 26.0
+offset_right = 1008.0
+offset_bottom = 1026.0
+scale = Vector2(0.345, 0.345)
+stream = ExtResource("4_gj1i0")
+volume_db = -80.0
+loop = true
+
+[node name="FadeOverlay2" type="ColorRect" parent="." index="10"]
 visible = false
 z_index = 100
 layout_mode = 1
@@ -17,3 +62,5 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
+
+[connection signal="finished" from="VideoStreamPlayer" to="." method="_on_video_stream_player_finished"]

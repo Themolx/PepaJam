@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=3 uid="uid://cgi7pt73ba30a"]
+
+[ext_resource type="PackedScene" uid="uid://ce878lshoyvv2" path="res://encounters/Action/piss_encounter.tscn" id="1_spn7s"]
+[ext_resource type="Texture2D" uid="uid://blluatq2smi24" path="res://Assets/Visuals/Karlin/neboj_tunel_00000.png" id="2_cg84w"]
+[ext_resource type="AudioStream" uid="uid://ukpmijw8y65h" path="res://Assets/Audio/chcani1.wav" id="3_ybpkd"]
+
+[node name="PissEncounterTunel" instance=ExtResource("1_spn7s")]
+new_scene = "res://encounters/Akt3/Kebak/kebab_encounter_01.tscn"
+
+[node name="Background" parent="." index="0"]
+visible = true
+offset_left = 9.0
+offset_top = 12.0
+offset_right = -4.0
+offset_bottom = -257.0
+texture = ExtResource("2_cg84w")
+metadata/_edit_lock_ = true
+
+[node name="VideoStreamPlayer" parent="." index="1"]
+visible = false
+buffering_msec = 500
+
+[node name="UI" parent="." index="4"]
+visible = true
+
+[node name="SceneTitle" parent="UI/VBoxContainer" index="0"]
+visible = false
+
+[node name="ChoiceContainer" parent="UI/VBoxContainer" index="4"]
+visible = false
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="11"]
+stream = ExtResource("3_ybpkd")
+volume_db = 12.905
+autoplay = true
+
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]

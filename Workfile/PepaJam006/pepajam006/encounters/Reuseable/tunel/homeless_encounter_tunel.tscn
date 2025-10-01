@@ -1,0 +1,23 @@
+[gd_scene load_steps=6 format=3 uid="uid://c4luf4025nmea"]
+
+[ext_resource type="PackedScene" uid="uid://bid0ncyk0wkfv" path="res://encounters/Reuseable/homeless_encounter.tscn" id="1_ma3kw"]
+[ext_resource type="VideoStream" uid="uid://dsuev573hr3ot" path="res://Assets/Visuals/Homeless/NEBOJ/homeless_happy_NEBOJ.ogv" id="2_j5cwo"]
+[ext_resource type="VideoStream" uid="uid://cn0534nhq6sni" path="res://Assets/Visuals/Homeless/NEBOJ/homeless_sad_NEBOJ.ogv" id="3_6vsbl"]
+[ext_resource type="VideoStream" uid="uid://etbh6oyskaxd" path="res://Assets/Visuals/Homeless/NEBOJ/homeless_cigo_NEBOJ.ogv" id="4_mb3qw"]
+[ext_resource type="VideoStream" uid="uid://bkpvrqk3thcmv" path="res://Assets/Visuals/Homeless/NEBOJ/homeless_idle_NEBOJ.ogv" id="5_vur0i"]
+
+[node name="HomelessEncounterTunel" instance=ExtResource("1_ma3kw")]
+next_scene_set_1 = "res://encounters/Akt3/Tunel/piss_encounter_tunel.tscn"
+next_scene_set_2 = "res://encounters/Akt3/Tunel/piss_encounter_tunel.tscn"
+
+[node name="VideoStreamPlayerH" parent="." index="1"]
+stream = ExtResource("2_j5cwo")
+
+[node name="VideoStreamPlayerS" parent="." index="2"]
+stream = ExtResource("3_6vsbl")
+
+[node name="VideoStreamPlayer" parent="." index="3"]
+stream = ExtResource("4_mb3qw")
+
+[node name="VideoStreamPlayer2" parent="." index="4"]
+stream = ExtResource("5_vur0i")

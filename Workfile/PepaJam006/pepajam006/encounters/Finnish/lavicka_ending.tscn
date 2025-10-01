@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://cvqlnctbeof1f"]
+
+[ext_resource type="PackedScene" uid="uid://dux0w3mcjeo0l" path="res://BaseEncounter.tscn" id="1_jc2fs"]
+[ext_resource type="Script" uid="uid://diyna37sk4t70" path="res://encounters/EndScreenEncounter.gd" id="2_0jtev"]
+[ext_resource type="VideoStream" uid="uid://dft3ck4tcud0q" path="res://Assets/Visuals/Ending/drunk_on_bench_ending.ogv" id="2_are1h"]
+[ext_resource type="FontFile" uid="uid://bv68l8kuuqary" path="res://Assets/Fonts/gunplay.ttf" id="4_8p64d"]
+[ext_resource type="AudioStream" uid="uid://bgsk8r33qblju" path="res://Assets/Audio/konas_zima.wav" id="5_vt8qm"]
+
+[node name="lavickaEnding" instance=ExtResource("1_jc2fs")]
+script = ExtResource("2_0jtev")
+
+[node name="VideoStreamPlayer" parent="." index="1"]
+stream = ExtResource("2_are1h")
+
+[node name="SceneText" parent="UI/VBoxContainer" index="2"]
+visible = false
+
+[node name="SceneText2" type="RichTextLabel" parent="UI/VBoxContainer" index="3"]
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("4_8p64d")
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "Namrdky"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="10"]
+stream = ExtResource("5_vt8qm")
+volume_db = 3.53
+autoplay = true
+
+[connection signal="finished" from="VideoStreamPlayer" to="." method="_on_video_stream_player_finished"]

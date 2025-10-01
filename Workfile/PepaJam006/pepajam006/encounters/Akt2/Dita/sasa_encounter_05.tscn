@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://dn7v86swqqixp"]
+
+[ext_resource type="PackedScene" uid="uid://dux0w3mcjeo0l" path="res://BaseEncounter.tscn" id="1_osi4p"]
+[ext_resource type="Script" uid="uid://bqnap7a100kiv" path="res://encounters/Akt2/Dita/sasa_encounter_05.gd" id="2_hh01p"]
+[ext_resource type="VideoStream" uid="uid://br1mhj7hbe6f8" path="res://Assets/Visuals/sasa/sasa_indle.ogv" id="3_4k145"]
+
+[node name="SasaEncounter05" instance=ExtResource("1_osi4p")]
+script = ExtResource("2_hh01p")
+
+[node name="VideoStreamPlayer" parent="." index="1"]
+stream = ExtResource("3_4k145")
+
+[node name="ChoiceContainer" parent="UI/VBoxContainer" index="4"]
+modulate = Color(1, 1, 1, 0)

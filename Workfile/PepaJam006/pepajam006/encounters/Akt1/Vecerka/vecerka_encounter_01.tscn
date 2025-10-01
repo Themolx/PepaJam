@@ -1,0 +1,117 @@
+[gd_scene load_steps=24 format=3 uid="uid://de6vb8afsnrq0"]
+
+[ext_resource type="PackedScene" uid="uid://dux0w3mcjeo0l" path="res://BaseEncounter.tscn" id="1_1g8bu"]
+[ext_resource type="Script" uid="uid://d1h7hq5yq28sa" path="res://encounters/Akt1/Vecerka/vecerka_encounter_01.gd" id="2_pj566"]
+[ext_resource type="VideoStream" uid="uid://cb5nrgelbquau" path="res://Assets/Visuals/Vecerka/vecerka_intro.ogv" id="3_4xy6h"]
+[ext_resource type="VideoStream" uid="uid://l4m10mpxcgj7" path="res://Assets/Visuals/Vecerka/vecerka_idle.ogv" id="4_4xy6h"]
+[ext_resource type="VideoStream" uid="uid://stvsn1odo1mt" path="res://Assets/Visuals/Vecerka/vecerka_take.ogv" id="5_5825c"]
+[ext_resource type="Texture2D" uid="uid://cygxhr2mlhbbi" path="res://Assets/Visuals/Ruce/vodka/panak_VODKA_00000.png" id="6_h4tfd"]
+[ext_resource type="Texture2D" uid="uid://sd2axyml8fpk" path="res://Assets/Visuals/Ruce/vodka/panak_VODKA_00001.png" id="7_qmfuu"]
+[ext_resource type="Texture2D" uid="uid://c280ittk72ehm" path="res://Assets/Visuals/Ruce/vodka/panak_VODKA_00002.png" id="8_6j7a7"]
+[ext_resource type="Texture2D" uid="uid://bwemucsugrabu" path="res://Assets/Visuals/Ruce/vodka/panak_VODKA_00003.png" id="9_6s2xy"]
+[ext_resource type="Texture2D" uid="uid://74ioocaqxqc7" path="res://Assets/Visuals/Ruce/vodka/panak_VODKA_00004.png" id="10_unxu8"]
+[ext_resource type="Texture2D" uid="uid://y03wduj5lcfa" path="res://Assets/Visuals/Ruce/vodka/panak_VODKA_00005.png" id="11_xl7qy"]
+[ext_resource type="Texture2D" uid="uid://b3pb7j6mfx7qo" path="res://Assets/Visuals/Ruce/vodka/panak_VODKA_00006.png" id="12_t4ebk"]
+[ext_resource type="Texture2D" uid="uid://c6j4dlb73v34b" path="res://Assets/Visuals/Ruce/vodka/panak_VODKA_00007.png" id="13_mfp7g"]
+[ext_resource type="Texture2D" uid="uid://de2bmkf8dstno" path="res://Assets/Visuals/Ruce/vodka/panak_VODKA_00008.png" id="14_b3yr5"]
+[ext_resource type="Texture2D" uid="uid://dwvwqrgdohk03" path="res://Assets/Visuals/Ruce/vodka/panak_VODKA_00009.png" id="15_2lpp2"]
+[ext_resource type="Texture2D" uid="uid://gar3dlgjtams" path="res://Assets/Visuals/Ruce/vodka/panak_VODKA_00010.png" id="16_1mrq0"]
+[ext_resource type="Texture2D" uid="uid://cw1w0p4y3bqqc" path="res://Assets/Visuals/Ruce/vodka/panak_VODKA_00011.png" id="17_6eim8"]
+[ext_resource type="Texture2D" uid="uid://bw3848kuovl31" path="res://Assets/Visuals/Ruce/vodka/panak_VODKA_00012.png" id="18_q88gm"]
+[ext_resource type="Texture2D" uid="uid://bcxp0433r68am" path="res://Assets/Visuals/Ruce/vodka/panak_VODKA_00013.png" id="19_171rx"]
+[ext_resource type="Texture2D" uid="uid://32y2yn08ltiw" path="res://Assets/Visuals/Ruce/vodka/panak_VODKA_00014.png" id="20_kqa4b"]
+[ext_resource type="Texture2D" uid="uid://ra6hsjl86yl1" path="res://Assets/Visuals/Ruce/vodka/panak_VODKA_00015.png" id="21_ou5eh"]
+[ext_resource type="Texture2D" uid="uid://t0k4j4u3kcp" path="res://Assets/Visuals/Ruce/vodka/panak_VODKA_00016.png" id="22_84jkh"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yw4ui"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_h4tfd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_qmfuu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_6j7a7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_6s2xy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_unxu8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_xl7qy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_t4ebk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_mfp7g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_b3yr5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_2lpp2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_1mrq0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_6eim8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_q88gm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_171rx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_kqa4b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_ou5eh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_84jkh")
+}],
+"loop": false,
+"name": &"default",
+"speed": 12.0
+}]
+
+[node name="VecerkaEncounter01" instance=ExtResource("1_1g8bu")]
+script = ExtResource("2_pj566")
+
+[node name="VideoStreamPlayer" parent="." index="1"]
+stream = ExtResource("3_4xy6h")
+loop = false
+
+[node name="VideoStreamPlayer2" type="VideoStreamPlayer" parent="." index="2"]
+layout_mode = 2
+offset_left = 8.0
+offset_top = 26.0
+offset_right = 1008.0
+offset_bottom = 1026.0
+scale = Vector2(0.345, 0.345)
+stream = ExtResource("4_4xy6h")
+loop = true
+
+[node name="VideoStreamPlayer3" type="VideoStreamPlayer" parent="." index="3"]
+layout_mode = 2
+offset_left = 8.0
+offset_top = 26.0
+offset_right = 1008.0
+offset_bottom = 1026.0
+scale = Vector2(0.345, 0.345)
+stream = ExtResource("5_5825c")
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="." index="12"]
+visible = false
+position = Vector2(221.5, 161.5)
+scale = Vector2(0.417, 0.417)
+sprite_frames = SubResource("SpriteFrames_yw4ui")
+
+[connection signal="finished" from="VideoStreamPlayer" to="." method="_on_video_stream_player_finished"]

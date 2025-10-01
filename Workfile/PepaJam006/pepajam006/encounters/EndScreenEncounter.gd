@@ -2,15 +2,15 @@ extends BaseEncounter
 
 # Story data for this encounter
 var encounter_title = "Konec"
-var encounter_text = "Děkujeme za hraní! Chcete začít znovu?"
+var encounter_text = "Je ti blbě."
 
 var encounter_choices = [
 	{
-		"text": "Začít znovu",
+		"text": "Zotavit se",
 		"action": "restart_game"
 	},
 	{
-		"text": "Ukončit hru",
+		"text": "Spát",
 		"action": "quit_game"
 	}
 ]
@@ -30,6 +30,8 @@ func _ready():
 	setup_encounter_content()
 	
 	super._ready()
+
+
 
 func setup_encounter_content():
 	"""Setup the story content for this encounter"""
@@ -58,7 +60,7 @@ func on_choice_selected(choice_index: int):
 			"restart_game":
 				restart_game()
 			"quit_game":
-				quit_game()
+				restart_game()
 
 func restart_game():
 	"""Restart the entire game"""
@@ -70,7 +72,9 @@ func quit_game():
 	"""Quit the application"""
 	get_tree().quit()
 
+
 func on_encounter_start():
+	fade_in()
 	# End screen atmosphere - peaceful fade
 	fade_background(1.0, 3.0)
 	await get_tree().create_timer(1.5).timeout

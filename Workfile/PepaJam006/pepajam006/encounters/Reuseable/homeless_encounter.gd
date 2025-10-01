@@ -4,32 +4,25 @@ extends BaseEncounter
 var encounter_title = "An Unlikely Guide"
 var encounter_text = "Nemáš cígo?"
 
+
+
+@export var next_scene_set_1: String = "res://encounters/Akt2/Dita/dita_encounter_03.tscn"
+@export var next_scene_set_2: String = "res://encounters/Akt2/Dita/dita_encounter_03.tscn"
+
 var encounter_choices = [
 	{
 		"text": "Dát cígo.",
-		"next_scene": "res://encounters/PoetryNightEncounter.tscn",
+		"next_scene": next_scene_set_1,
 		"effects": {
 			"unlock_paths": ["artistic_path"]
 		}
 	},
 	{
 		"text": "Sam nemam.",
-		"next_scene": "res://encounters/HomeArrivalEncounter.tscn"
+		"next_scene": next_scene_set_2
 	}
 ]
 
-func _ready():
-	encounter_id = "homeless_cigo"
-	# Set specific assets for this encounter
-	# background_texture = preload("res://assets/backgrounds/hidden_garden.png")
-	# character_texture = preload("res://assets/characters/hedgehog.png")
-	# ambient_sound = preload("res://assets/audio/garden_ambience.ogg")
-	# choice_sound = preload("res://assets/audio/rustling.ogg")
-	
-	# Set the story content
-	setup_encounter_content()
-	
-	super._ready()
 
 func setup_encounter_content():
 	"""Setup the story content for this encounter"""
@@ -47,6 +40,17 @@ func on_choice_selected(choice_index: int):
 		return
 	
 	var choice = encounter_choices[choice_index]
+	var next_scene = next_scene_set_1
+	if choice_index == 0:
+		$VideoStreamPlayerH.play()
+		$VideoStreamPlayerH.show()
+		await get_tree().create_timer(2).timeout
+		next_scene = next_scene_set_1
+	else:
+		$VideoStreamPlayerS.play()
+		$VideoStreamPlayerS.show()
+		await get_tree().create_timer(1.5).timeout
+		next_scene = next_scene_set_2
 	
 	# Process effects if they exist
 	if choice.has("effects"):
@@ -58,37 +62,43 @@ func on_choice_selected(choice_index: int):
 	if choice.has("next_scene"):
 		var story_manager = get_node("/root/Main/StoryManager")
 		if story_manager:
-			story_manager.load_encounter(choice.next_scene)
+			story_manager.load_encounter(next_scene)
+
+func _ready():
+	encounter_id = "pub_exit"
+	# Set specific assets for this encounter
+	# background_texture = preload("res://assets/backgrounds/pub_exterior.png")
+	# character_texture = preload("res://assets/characters/player_drunk.png")
+	# ambient_sound = preload("res://assets/audio/night_ambience.ogg")
+	# choice_sound = preload("res://assets/audio/footstep.ogg")
+	
+	# Customize typewriter settings for this encounter
+	set_typewriter_mode("letter")  # or "word"
+	set_typewriter_speed(0.03)  # Faster typing for drunk stumbling effect
+	
+	# Set the story content
+	setup_encounter_content()
+	
+	super._ready()
+
+
+
 
 func on_encounter_start():
-	# Hedgehog entrance - cute bouncing animation
-	play_custom_animation("hedgehog_bounce")
+	# Fade in when encounter starts
+	fade_in()
 	
-	# Add whimsical atmosphere
+	# Play custom entrance animation for pub exit
+	play_custom_animation("stumble_out")
+	
+	# Add some comedy timing
 	await get_tree().create_timer(1.0).timeout
-	pulse_character(0.9, 1.5)  # Smaller pulse for cute effect
+	shake_character(5.0, 0.3)
 
-func load_encounter_data(data: Dictionary):
-	super.load_encounter_data(data)
-	
-	# Add hedgehog charm to the text
-	if scene_text:
-		scene_text.append_text("\n\n[i]*The hedgehog adjusts its tiny hat with dignity*[/i]")
+func setup_animations():
+	# Create custom animations for this encounter
+	pass
 
-func _on_left_choice_pressed():
-	# Special hedgehog reaction to poetry choice
-	if encounter_data.has("choices") and encounter_data.choices.size() > 0:
-		var choice_text = encounter_data.choices[0].get("text", "")
-		if "poetry" in choice_text.to_lower():
-			shake_character(2.0, 0.2)  # Excited hedgehog
-	
-	super._on_left_choice_pressed()
-
-func _on_right_choice_pressed():
-	# Hedgehog waves goodbye if leaving
-	if encounter_data.has("choices") and encounter_data.choices.size() > 1:
-		var choice_text = encounter_data.choices[1].get("text", "")
-		if "leave" in choice_text.to_lower():
-			play_custom_animation("hedgehog_wave")
-	
-	super._on_right_choice_pressed()
+func _on_video_stream_player_finished() -> void:
+	$VideoStreamPlayer2.play()
+	$VideoStreamPlayer.hide()

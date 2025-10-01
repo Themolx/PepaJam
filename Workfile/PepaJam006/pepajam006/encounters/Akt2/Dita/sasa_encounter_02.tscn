@@ -1,0 +1,89 @@
+[gd_scene load_steps=21 format=3 uid="uid://b75lr262uhgpk"]
+
+[ext_resource type="PackedScene" uid="uid://dux0w3mcjeo0l" path="res://BaseEncounter.tscn" id="1_qoomf"]
+[ext_resource type="Script" uid="uid://d1kh5mauigjuq" path="res://encounters/Akt2/Dita/sasa_encounter_02.gd" id="2_orqqx"]
+[ext_resource type="VideoStream" uid="uid://br1mhj7hbe6f8" path="res://Assets/Visuals/sasa/sasa_indle.ogv" id="3_orqqx"]
+[ext_resource type="Texture2D" uid="uid://d2soqg3l6u1n5" path="res://Assets/Visuals/Ruce/Rum/panak_RUM_00001.png" id="5_5p3eu"]
+[ext_resource type="Texture2D" uid="uid://ckensm738djdb" path="res://Assets/Visuals/Ruce/Rum/panak_RUM_00002.png" id="6_k5ote"]
+[ext_resource type="Texture2D" uid="uid://bicrsh68yi0ag" path="res://Assets/Visuals/Ruce/Rum/panak_RUM_00003.png" id="7_y8nud"]
+[ext_resource type="Texture2D" uid="uid://bv5rxgb5idfqs" path="res://Assets/Visuals/Ruce/Rum/panak_RUM_00004.png" id="8_ux7oj"]
+[ext_resource type="Texture2D" uid="uid://cy3p4mos48cyd" path="res://Assets/Visuals/Ruce/Rum/panak_RUM_00005.png" id="9_ih442"]
+[ext_resource type="Texture2D" uid="uid://ibq5ofbwdylx" path="res://Assets/Visuals/Ruce/Rum/panak_RUM_00006.png" id="10_g3l2h"]
+[ext_resource type="Texture2D" uid="uid://coqxp1wadsa4t" path="res://Assets/Visuals/Ruce/Rum/panak_RUM_00007.png" id="11_naq6n"]
+[ext_resource type="Texture2D" uid="uid://ck1i1n6h2sfwn" path="res://Assets/Visuals/Ruce/Rum/panak_RUM_00008.png" id="12_ann1h"]
+[ext_resource type="Texture2D" uid="uid://bdxhs3s10ayk4" path="res://Assets/Visuals/Ruce/Rum/panak_RUM_00009.png" id="13_w53et"]
+[ext_resource type="Texture2D" uid="uid://vlty4qyianjk" path="res://Assets/Visuals/Ruce/Rum/panak_RUM_00010.png" id="14_b5s52"]
+[ext_resource type="Texture2D" uid="uid://ca6dfkhafnvso" path="res://Assets/Visuals/Ruce/Rum/panak_RUM_00011.png" id="15_yjnqn"]
+[ext_resource type="Texture2D" uid="uid://den65jlnsg01b" path="res://Assets/Visuals/Ruce/Rum/panak_RUM_00012.png" id="16_rfhec"]
+[ext_resource type="Texture2D" uid="uid://cxgqjdufc0ub2" path="res://Assets/Visuals/Ruce/Rum/panak_RUM_00013.png" id="17_e8jmi"]
+[ext_resource type="Texture2D" uid="uid://cntiustaviajb" path="res://Assets/Visuals/Ruce/Rum/panak_RUM_00014.png" id="18_ddlag"]
+[ext_resource type="Texture2D" uid="uid://cddydvmru7n64" path="res://Assets/Visuals/Ruce/Rum/panak_RUM_00015.png" id="19_dbcm5"]
+[ext_resource type="Texture2D" uid="uid://brv2l85ykervf" path="res://Assets/Visuals/Ruce/Rum/panak_RUM_00016.png" id="20_x3oab"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8em47"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_5p3eu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_k5ote")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_y8nud")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_ux7oj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_ih442")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_g3l2h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_naq6n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_ann1h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_w53et")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_b5s52")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_yjnqn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_rfhec")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_e8jmi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_ddlag")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_dbcm5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_x3oab")
+}],
+"loop": false,
+"name": &"default",
+"speed": 12.0
+}]
+
+[node name="SasaEncounter02" instance=ExtResource("1_qoomf")]
+script = ExtResource("2_orqqx")
+
+[node name="VideoStreamPlayer" parent="." index="1"]
+stream = ExtResource("3_orqqx")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="10"]
+position = Vector2(182, 201)
+scale = Vector2(0.338, 0.338)
+sprite_frames = SubResource("SpriteFrames_8em47")
+autoplay = "default"

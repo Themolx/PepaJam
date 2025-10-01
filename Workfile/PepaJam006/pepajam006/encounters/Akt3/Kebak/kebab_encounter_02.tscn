@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://vfcasf6p3h8"]
+
+[ext_resource type="PackedScene" uid="uid://dux0w3mcjeo0l" path="res://BaseEncounter.tscn" id="1_8ihyj"]
+[ext_resource type="Script" uid="uid://ea1mham3e6f" path="res://encounters/Akt3/Kebak/kebab_encounter_02.gd" id="2_cvuir"]
+[ext_resource type="VideoStream" uid="uid://fqudr827o61n" path="res://Assets/Visuals/Kebab/kebab_akce.ogv" id="2_l71bx"]
+
+[node name="KebabEncounter02" instance=ExtResource("1_8ihyj")]
+script = ExtResource("2_cvuir")
+
+[node name="VideoStreamPlayer" parent="." index="1"]
+stream = ExtResource("2_l71bx")
+loop = false
+
+[node name="ChoiceContainer" parent="UI/VBoxContainer" index="4"]
+visible = false
+
+[connection signal="finished" from="VideoStreamPlayer" to="." method="_on_video_stream_player_finished"]
